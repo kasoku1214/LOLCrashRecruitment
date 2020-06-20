@@ -32,4 +32,4 @@ build/
 
 
 ###ignore###
-src/main/resources/application.propertie
+src/main/resources/application.properties
