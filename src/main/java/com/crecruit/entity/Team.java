@@ -21,10 +21,7 @@ public class Team {
 	@Column(name = "team_name")
 	String teamName;
 
-	@Column(name = "leader_id")
-	Integer leaderId;
-
-	@Column(name = "teaｍ_memo")
+	@Column(name = "team_memo")
 	String teamMemo;
 
 	@Column(name = "team_introduction")

@@ -5,8 +5,37 @@
 <title>Crash募集</title>
 </head>
 <body>
-<form action="team_register">
-<button>Crashメンバー募集</button>
-</form>
+	<div th:replace="common/header :: header"></div>
+	<form action="team_register">
+		<button>Crashメンバー募集</button>
+	</form>
+	<table border="1">
+		<tr>
+			<th>チーム名</th>
+			<th>紹介文</th>
+		</tr>
+		<tr th:each="team:${teamList}">
+			<td th:text="${team.teamName}"></td>
+			<td th:text="${team.teamIntroduction}"></td>
+		</tr>
+	</table>
+	<div>
+	    <ul>
+	        <li>
+	            <span th:if="${page.first}">←先頭</span>
+	            <a th:if="${not page.first}" th:href="@{${url}(page=0)}">←先頭</a>
+	        </li>
+	        <li th:each="i : ${#numbers.sequence(0, page.totalPages-1)}">
+	            <span th:if="${i}==${page.number}" th:text="${i+1}">1</span>
+	            <a th:if="${i}!=${page.number}" th:href="@{${url}(page=${i})}">
+	                <span th:text="${i+1}">1</span>
+	            </a>
+	        </li>
+	        <li>
+	            <span th:if="${page.last}">末尾➝</span>
+	            <a th:if="${not page.last}" th:href="@{${url}(page=(${page.totalPages}-1))}">末尾➝</a>
+	        </li>
+	    </ul>
+	</div>
 </body>
 </html>
