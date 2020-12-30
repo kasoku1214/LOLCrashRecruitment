@@ -24,16 +24,10 @@ public class Member {
 	@Column(name = "role_code_1")
 	Integer roleCode1;
 
-	@Column(name = "role_code_2")
-	Integer roleCode2;
+	@Column(name = "rank_code")
+	Integer rankCode;
 
 	@Column(name = "team_id")
 	Integer teamId;
-
-	@Column(name = "info_address")
-	String infoAddress;
-
-	@Column(name = "leader_flag")
-	Integer leaderFlag;
 
 }

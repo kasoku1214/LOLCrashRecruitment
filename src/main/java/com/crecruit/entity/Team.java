@@ -21,8 +21,23 @@ public class Team {
 	@Column(name = "team_name")
 	String teamName;
 
-	@Column(name = "team_memo")
-	String teamMemo;
+	@Column(name = "max_rank")
+	Integer maxRank;
+
+	@Column(name = "min_rank")
+	Integer minRank;
+
+	@Column(name = "recruited_role_1")
+	Integer recruitedRole1;
+
+	@Column(name = "recruited_role_2")
+	Integer recruitedRole2;
+
+	@Column(name = "recruited_role_3")
+	Integer recruitedRole3;
+
+	@Column(name = "recruited_role_4")
+	Integer recruitedRole4;
 
 	@Column(name = "team_introduction")
 	String teamIntroduction;

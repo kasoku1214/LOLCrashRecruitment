@@ -1,0 +1,184 @@
+/*ヘッダー*/
+header {
+	background: #3D3D42;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.search_button {
+	position: relative;
+	top: 3px;
+}
+
+.to_register_page_button {
+	margin-bottom: 10px;
+	background: #B7F4BD;
+	border-radius: 9px;
+	filter: drop-shadow(5px 5px 4px rgba(0, 0, 0, 0.25));
+}
+
+.titleName {
+	display: block;
+	position: relative;
+	font-family: Source Code Pro;
+	font-size: 40px;
+	margin-top: 0px;
+	margin-bottom: 10px;
+	text-align: center;
+	color: #EDEDF4;
+}
+
+.team_search_form {
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+/*topページ*/
+.team_card {
+	height: 340px;
+	width: 315px;
+	background: #eedff9;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 23px;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: 315px 315px;
+	gap: 100px;
+	justify-content: center;
+}
+
+.card_title {
+	position: relative;
+	height: 54px;
+	width: 315px;
+	background: #3D3D42;
+	border-radius: 23px 23px 0px 0px;
+	font-family: Source Code Pro;
+	font-size: 18px;
+	line-height: 54px;
+	text-align: center;
+	color: #EDEDF4;
+}
+
+.recruited_role {
+	position: relative;
+	top: 4px;
+	left: 17px;
+	filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));
+	background: #E6A162;
+	border-radius: 5px;
+	font-family: Source Code Pro;
+	font-size: 12px;
+	color: #000000;
+	display: inline-block;
+	margin-left: 9px;
+	margin-bottom: 6px;
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 10px;
+}
+
+.min_rank {
+	position: relative;
+	top: 6px;
+	left: 17px;
+	filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));
+	border-radius: 5px;
+	font-family: Source Code Pro;
+	font-size: 12px;
+	color: #000000;
+	display: inline-block;
+	margin-left: 9px;
+	margin-bottom: 8px;
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 10px;
+}
+
+.max_rank {
+	position: relative;
+	top: 6px;
+	left: 17px;
+	filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));
+	border-radius: 5px;
+	font-family: Source Code Pro;
+	font-size: 12px;
+	color: #000000;
+	display: inline-block;
+	margin-left: 9px;
+	margin-bottom: 8px;
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+.member {
+	position: relative;
+	top: 7px;
+	left: 90px;
+	margin-top:3px;
+}
+
+.member_role {
+	vertical-align: super;
+	font-family: Source Code Pro;
+	font-size: 6.5px;
+	line-height: 8px;
+	color: #000000;
+}
+
+.member_rank {
+	position: relative;
+	left: 19px;
+}
+
+.team_introduction{
+	position: relative;
+	top: 20px;
+	margin: auto;
+	background: #FFFFFF;
+	height: 106px;
+	width: 276px;
+}
+
+.team_introductionContent{
+	position: relative;
+	top:10px;
+	left:10px;
+}
+
+body {
+	margin: 0px;
+	background: #E5E5E5;
+}
+
+.h-18 {
+	height: 18px;
+}
+
+.h-27 {
+	height: 27px;
+}
+
+.center {
+	text-align: center;
+}
+
+/*カラー*/
+.iron {
+
+}
+
+.silver {
+	background: #c9caca;
+}
+
+.gold {
+	background: #ffd700;
+}

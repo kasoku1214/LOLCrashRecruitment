@@ -31,4 +31,19 @@ public class TeamSearchController {
 
 		return modelAndView;
 	}
+
+	@RequestMapping(value = "/team_search")
+	public ModelAndView searchTeam(ModelAndView modelAndView, Pageable pageable) {
+		// 全チームの検索
+		Page<Team> teamPage = teamSearchService.searchAllTeam(pageable);
+
+		// htmlに値を渡す
+		modelAndView.addObject("page", teamPage);
+		modelAndView.addObject("teamList", teamPage.getContent());
+
+		// 遷移先：チーム検索ページ
+		modelAndView.setViewName("team_search");
+
+		return modelAndView;
+	}
 }

@@ -2,6 +2,9 @@ package com.crecruit.enumclass;
 
 public enum Role {
 
+	//any
+	ANY(0, "all"),
+
 	// トップ
 	Top(1, "Top"),
 
@@ -33,6 +36,7 @@ public enum Role {
 	public int getRoleCode() {
 		return this.roleCode;
 	}
+
 	public String getRoleName() {
 		return this.roleName;
 	}

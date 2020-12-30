@@ -1,24 +1,37 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<link rel="stylesheet" href="css/common.css">
 <meta charset="UTF-8">
-<title>Crash募集</title>
+	<title>Crash募集</title>
 </head>
 <body>
 	<div th:replace="common/header :: header"></div>
-	<form action="team_register">
-		<button>Crashメンバー募集</button>
-	</form>
-	<table border="1">
-		<tr>
-			<th>チーム名</th>
-			<th>紹介文</th>
-		</tr>
-		<tr th:each="team:${teamList}">
-			<td th:text="${team.teamName}"></td>
-			<td th:text="${team.teamIntroduction}"></td>
-		</tr>
-	</table>
+	<br><br>
+	<div class="grid">
+		<div class="team_card"th:each="team:${teamList}">
+			<div class="card_title" th:text="${team.teamName}"></div>
+			<div class="min_rank silver" th:text="Silver1"></div>
+			<div class="max_rank gold" th:text="Gold2"></div><br>
+			<div class="recruited_role" th:text="Top"></div>
+			<div class="recruited_role" th:text="Mid"></div>
+			<div class="member">
+				<span class="member_role" th:text="top"></span><span class="member_name" th:text="jon"></span>
+				<span class="member_rank" th:text="gold1"></span>
+			</div>
+			<div class="member">
+				<span class="member_role" th:text="top"></span><span class="member_name" th:text="jon"></span>
+				<span class="member_rank" th:text="gold1"></span>
+			</div>
+			<div class="member">
+				<span class="member_role" th:text="top"></span><span class="member_name" th:text="jon"></span>
+				<span class="member_rank" th:text="gold1"></span>
+			</div>
+			<div class="team_introduction">
+				<span class="team_introductionContent" th:text="${team.teamIntroduction}"></span>
+			</div>
+		</div>
+	</div>
 	<div>
 	    <ul>
 	        <li>
