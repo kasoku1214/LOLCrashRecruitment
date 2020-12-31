@@ -1,8 +1,13 @@
 package com.crecruit.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -16,33 +21,37 @@ public class Team {
 
 	@Id
 	@Column(name = "team_id")
-	Integer teamId;
+	private Integer teamId;
 
 	@Column(name = "team_name")
-	String teamName;
+	private String teamName;
 
 	@Column(name = "max_rank")
-	Integer maxRank;
+	private Integer maxRank;
 
 	@Column(name = "min_rank")
-	Integer minRank;
+	private Integer minRank;
 
 	@Column(name = "recruited_role_1")
-	Integer recruitedRole1;
+	private Integer recruitedRole1;
 
 	@Column(name = "recruited_role_2")
-	Integer recruitedRole2;
+	private Integer recruitedRole2;
 
 	@Column(name = "recruited_role_3")
-	Integer recruitedRole3;
+	private Integer recruitedRole3;
 
 	@Column(name = "recruited_role_4")
-	Integer recruitedRole4;
+	private Integer recruitedRole4;
 
 	@Column(name = "team_introduction")
-	String teamIntroduction;
+	private String teamIntroduction;
 
 	@Column(name = "password")
-	String password;
+	private String password;
+
+	@OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "team_id")
+	private List<Member> memberList;
 
 }

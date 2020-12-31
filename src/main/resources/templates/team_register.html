@@ -13,36 +13,55 @@
 				<td>チーム名</td>
 				<td><input type="text" th:field="*{teamName}"></input></td>
 			</tr>
+			<tr>
+				<td>最大ランク</td>
+				<td><select th:field="*{maxRank}">
+					<option
+						th:each="rank : ${T(com.crecruit.enumclass.Rank).values()}"
+						th:value="${rank.getRankCode()}" th:text="${rank.rankName}">最大ランク</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td>最低ランク</td>
+				<td><select th:field="*{minRank}">
+					<option
+						th:each="rank : ${T(com.crecruit.enumclass.Rank).values()}"
+						th:value="${rank.getRankCode()}" th:text="${rank.rankName}">最低ランク</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td>募集ロール</td>
+				<td><select th:field="*{recruitedRole1}">
+					<option
+						th:each="role : ${T(com.crecruit.enumclass.Role).values()}"
+						th:value="${role.getRoleCode()}" th:text="${role.roleName}">最低ランク</option>
+				</select></td>
+			</tr>
 			<tbody th:object=${member}>
 				<tr>
 					<td>サモナーネーム(リーダー)</td>
 					<td><input type="text" th:field="*{summonerName}" required></td>
 				</tr>
 				<tr>
-					<td>希望ロール</td>
+					<td>ロール</td>
 					<td><select th:field="*{roleCode1}">
 							<option
 								th:each="role : ${T(com.crecruit.enumclass.Role).values()}"
 								th:value="${role.getRoleCode()}" th:text="${role.roleName}">ロール名</option>
 					</select></td>
-					<td><select th:field="*{roleCode2}">
-							<option
-								th:each="role : ${T(com.crecruit.enumclass.Role).values()}"
-								th:value="${role.roleCode}" th:text="${role.roleName}">ロール名</option>
-					</select></td>
 				</tr>
 				<tr>
-					<td>アドレス</td>
-					<td><input type="text" th:field="*{infoAddress}"></td>
+					<td>ランク</td>
+					<td><select th:field="*{rankCode}">
+							<option
+								th:each="rank : ${T(com.crecruit.enumclass.Rank).values()}"
+								th:value="${rank.getRankCode()}" th:text="${rank.rankName}">ランク</option>
+					</select></td>
 				</tr>
 			</tbody>
 			<tr>
 				<td>チーム紹介文</td>
 				<td><textarea th:field="*{teamIntroduction}"></textarea></td>
-			</tr>
-			<tr>
-				<td>チーム内共有メモ（チーム詳細画面に入れるメンバーのみ見ることができます）</td>
-				<td><textarea th:field="*{teamMemo}"></textarea></td>
 			</tr>
 			<tr>
 				<td>パスワード（このパスワードでチーム詳細画面へのアクセスを制限します）</td>

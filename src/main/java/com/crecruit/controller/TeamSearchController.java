@@ -26,6 +26,9 @@ public class TeamSearchController {
 		modelAndView.addObject("page", teamPage);
 		modelAndView.addObject("teamList", teamPage.getContent());
 
+		System.out.println(teamPage.getContent().get(0).getTeamName());
+		System.out.println(teamPage.getContent().get(0).getMemberList().get(0).getSummonerName());
+
 		// 遷移先：チーム検索ページ
 		modelAndView.setViewName("team_search");
 

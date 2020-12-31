@@ -34,12 +34,6 @@ public class TeamRegisterService {
 		team.setTeamId(teamId);
 		member.setTeamId(teamId);
 
-		// メンバーの情報を整形
-		if (member.getInfoAddress() == null || member.getInfoAddress() == "") {
-			member.setInfoAddress("https://jp.op.gg/summoner/userName=" + member.getSummonerName());
-		}
-		member.setLeaderFlag(1);
-
 		// チームを登録
 		teamRepository.save(team);
 

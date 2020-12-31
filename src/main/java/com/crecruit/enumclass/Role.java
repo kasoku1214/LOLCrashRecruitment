@@ -2,9 +2,6 @@ package com.crecruit.enumclass;
 
 public enum Role {
 
-	//any
-	ANY(0, "all"),
-
 	// トップ
 	Top(1, "Top"),
 
@@ -39,5 +36,16 @@ public enum Role {
 
 	public String getRoleName() {
 		return this.roleName;
+	}
+
+	//roleCodeからroleNameを返すメソッド
+	public static String getRoleNameByRoleCode(int roleCode) {
+		for (Role role : Role.values()) {
+			if (role.getRoleCode() == roleCode) {
+				return role.getRoleName();
+			}
+		}
+		// 見つからなかったらnullを返す
+		return null;
 	}
 }

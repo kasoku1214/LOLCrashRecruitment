@@ -2,9 +2,6 @@ package com.crecruit.enumclass;
 
 public enum Rank {
 
-	//any
-	ANY(0, "all"),
-
 	// アイアン
 	IRON4(1, "Iron 4"),
 	IRON3(2, "Iron 3"),
@@ -51,7 +48,19 @@ public enum Rank {
 	public int getRankCode() {
 		return this.rankCode;
 	}
+
 	public String getRankName() {
 		return this.rankName;
+	}
+
+	//rankcodeからrankNameを返すメソッド
+	public static String getRankNameByRankCode(int rankCode) {
+		for (Rank rank : Rank.values()) {
+			if (rank.getRankCode() == rankCode) {
+				return rank.getRankName();
+			}
+		}
+		// 見つからなかったらnullを返す
+		return null;
 	}
 }
