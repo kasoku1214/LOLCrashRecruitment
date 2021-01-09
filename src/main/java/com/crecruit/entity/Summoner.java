@@ -11,12 +11,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "member")
-public class Member {
+@Table(name = "summoner")
+public class Summoner {
 
 	@Id
-	@Column(name = "member_id")
-	private Integer memberId;
+	@Column(name = "summoner_id")
+	private Integer summonerId;
 
 	@Column(name = "summoner_name")
 	private String summonerName;

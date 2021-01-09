@@ -1,7 +1,8 @@
 package com.crecruit.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,14 +21,10 @@ public class TeamSearchController {
 	@RequestMapping(value = "/")
 	public ModelAndView searchAllTeam(ModelAndView modelAndView, Pageable pageable) {
 		// 全チームの検索
-		Page<Team> teamPage = teamSearchService.searchAllTeam(pageable);
+		List<Team> teamList = teamSearchService.searchAllTeam();
 
 		// htmlに値を渡す
-		modelAndView.addObject("page", teamPage);
-		modelAndView.addObject("teamList", teamPage.getContent());
-
-		System.out.println(teamPage.getContent().get(0).getTeamName());
-		System.out.println(teamPage.getContent().get(0).getMemberList().get(0).getSummonerName());
+		modelAndView.addObject("teamList", teamList);
 
 		// 遷移先：チーム検索ページ
 		modelAndView.setViewName("team_search");
@@ -35,18 +32,18 @@ public class TeamSearchController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/team_search")
-	public ModelAndView searchTeam(ModelAndView modelAndView, Pageable pageable) {
-		// 全チームの検索
-		Page<Team> teamPage = teamSearchService.searchAllTeam(pageable);
-
-		// htmlに値を渡す
-		modelAndView.addObject("page", teamPage);
-		modelAndView.addObject("teamList", teamPage.getContent());
-
-		// 遷移先：チーム検索ページ
-		modelAndView.setViewName("team_search");
-
-		return modelAndView;
-	}
+//	@RequestMapping(value = "/team_search")
+//	public ModelAndView searchTeam(ModelAndView modelAndView, Pageable pageable) {
+//		// 全チームの検索
+//		Page<Team> teamPage = teamSearchService.searchAllTeam(pageable);
+//
+//		// htmlに値を渡す
+//		modelAndView.addObject("page", teamPage);
+//		modelAndView.addObject("teamList", teamPage.getContent());
+//
+//		// 遷移先：チーム検索ページ
+//		modelAndView.setViewName("team_search");
+//
+//		return modelAndView;
+//	}
 }

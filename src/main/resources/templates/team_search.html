@@ -9,34 +9,32 @@
 	<div th:replace="common/header :: header"></div>
 	<br><br>
 	<div class="grid">
-		<div class="team_card"th:each="team:${teamList}">
+		<div class="team_card" th:each="team, teamStat:${teamList}">
 			<div class="card_title" th:text="${team.teamName}"></div>
-			<div class="min_rank silver" th:text="${T(com.crecruit.enumclass.Rank).getRankNameByRankCode(team.getMinRank())}"></div>
-			<div class="max_rank gold" th:text="${T(com.crecruit.enumclass.Rank).getRankNameByRankCode(team.getMaxRank())}"></div><br>
-			<div class="recruited_role" th:if="${team.getRecruitedRole1() != null}"
-			th:text="${T(com.crecruit.enumclass.Role).getRoleNameByRoleCode(team.getRecruitedRole1())}"></div>
-			<div class="recruited_role" th:if="${team.getRecruitedRole2() != null}"
-			th:text="${T(com.crecruit.enumclass.Role).getRoleNameByRoleCode(team.getRecruitedRole2())}"></div>
-			<div class="recruited_role" th:if="${team.getRecruitedRole3() != null}"
-			th:text="${T(com.crecruit.enumclass.Role).getRoleNameByRoleCode(team.getRecruitedRole3())}"></div>
-			<div class="recruited_role" th:if="${team.getRecruitedRole4() != null}"
-			th:text="${T(com.crecruit.enumclass.Role).getRoleNameByRoleCode(team.getRecruitedRole4())}"></div>
-			<div class="member">
-				<span class="member_role" th:text="top"></span><span class="member_name" th:text="jon"></span>
-				<span class="member_rank" th:text="gold1"></span>
-			</div>
-			<div class="member">
-				<span class="member_role" th:text="top"></span><span class="member_name" th:text="jon"></span>
-				<span class="member_rank" th:text="gold1"></span>
-			</div>
-			<div class="member">
-				<span class="member_role" th:text="top"></span><span class="member_name" th:text="jon"></span>
-				<span class="member_rank" th:text="gold1"></span>
+			<div class="min_rank" th:id="'minRank' + ${teamStat.index}"
+				th:text="${T(com.crecruit.enumclass.Rank).getRankNameByRankCode(team.getMinRank())}"></div>
+			<div class="max_rank" th:id="'maxRank' + ${teamStat.index}"
+				th:text="${T(com.crecruit.enumclass.Rank).getRankNameByRankCode(team.getMaxRank())}"></div><br>
+			<div class="recruited_role" th:if="${team.getIsRecruitedTop() == 1}"
+			th:text="${T(com.crecruit.enumclass.Role).TOP.getRoleName()}"></div>
+			<div class="recruited_role" th:if="${team.getIsRecruitedJG() == 1}"
+			th:text="${T(com.crecruit.enumclass.Role).JG.getRoleName()}"></div>
+			<div class="recruited_role" th:if="${team.getIsRecruitedMid() == 1}"
+			th:text="${T(com.crecruit.enumclass.Role).MID.getRoleName()}"></div>
+			<div class="recruited_role" th:if="${team.getIsRecruitedBot() == 1}"
+			th:text="${T(com.crecruit.enumclass.Role).BOT.getRoleName()}"></div>
+			<div class="recruited_role" th:if="${team.getIsRecruitedSup() == 1}"
+			th:text="${T(com.crecruit.enumclass.Role).SUP.getRoleName()}"></div>
+			<div class="summoner" th:each="summoner:${team.summonerList}">
+				<span class="summoner_role" th:text="${T(com.crecruit.enumclass.Role).getRoleNameByRoleCode(summoner.roleCode1)}"></span><span class="summoner_name" th:text="${summoner.summonerName}"></span>
+				<span class="summoner_rank" th:text="${T(com.crecruit.enumclass.Rank).getRankNameByRankCode(summoner.rankCode)}"></span>
 			</div>
 			<div class="team_introduction">
 				<span class="team_introductionContent" th:text="${team.teamIntroduction}"></span>
 			</div>
 		</div>
 	</div>
+	<div th:replace="common/footer :: footer"></div>
+<script src="js/team_search.js"></script>
 </body>
 </html>

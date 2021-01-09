@@ -7,68 +7,126 @@
 </head>
 <body>
 	<div th:replace="common/header :: header"></div>
-	<form th:action="team_create" th:object="${team}">
-		<table>
-			<tr>
-				<td>チーム名</td>
-				<td><input type="text" th:field="*{teamName}"></input></td>
-			</tr>
-			<tr>
-				<td>最大ランク</td>
-				<td><select th:field="*{maxRank}">
+	<br><br>
+	<form class="team_create_form" th:action="team_create" th:object="${team}">
+		<div class="team_create_form_title">メンバー募集</div>
+			<div class="team_create_row">
+				<label class="column_title">チーム名</label>
+				<input class="team_name_input" type="text" th:field="*{teamName}">
+			</div>
+			<div th:object=${summoner1} class="team_create_row">
+				<label class="column_title">サモナーネーム</label>
+				<input class="summoner_name_input" type="text" th:field="*{summonerName}" required>
+				<select class="role_pulldown" th:field="*{roleCode1}">
+						<option
+							th:each="role : ${T(com.crecruit.enumclass.Role).values()}"
+							th:value="${role.getRoleCode()}" th:text="${role.roleName}">ロール名</option>
+				</select>
+				<select class="rank_pulldown" th:field="*{rankCode}">
+						<option
+							th:each="rank : ${T(com.crecruit.enumclass.Rank).values()}"
+							th:value="${rank.getRankCode()}" th:text="${rank.rankName}">ランク</option>
+				</select>
+			</div>
+			<div th:object=${summoner2} class="team_create_summoner_row">
+				<label class="column_title"></label>
+				<input class="summoner_name_input" type="text" th:field="*{summonerName}" required>
+				<select class="role_pulldown" th:field="*{roleCode1}">
+						<option
+							th:each="role : ${T(com.crecruit.enumclass.Role).values()}"
+							th:value="${role.getRoleCode()}" th:text="${role.roleName}">ロール名</option>
+				</select>
+				<select class="rank_pulldown" th:field="*{rankCode}">
+						<option
+							th:each="rank : ${T(com.crecruit.enumclass.Rank).values()}"
+							th:value="${rank.getRankCode()}" th:text="${rank.rankName}">ランク</option>
+				</select>
+			</div>
+			<div th:object=${summoner3} class="team_create_summoner_row">
+				<label class="column_title"></label>
+				<input class="summoner_name_input" type="text" th:field="*{summonerName}" required>
+				<select class="role_pulldown" th:field="*{roleCode1}">
+						<option
+							th:each="role : ${T(com.crecruit.enumclass.Role).values()}"
+							th:value="${role.getRoleCode()}" th:text="${role.roleName}">ロール名</option>
+				</select>
+				<select class="rank_pulldown" th:field="*{rankCode}">
+						<option
+							th:each="rank : ${T(com.crecruit.enumclass.Rank).values()}"
+							th:value="${rank.getRankCode()}" th:text="${rank.rankName}">ランク</option>
+				</select>
+			</div>
+			<div th:object=${summoner4} class="team_create_summoner_row">
+				<label class="column_title"></label>
+				<input class="summoner_name_input" type="text" th:field="*{summonerName}" required>
+				<select class="role_pulldown" th:field="*{roleCode1}">
+						<option
+							th:each="role : ${T(com.crecruit.enumclass.Role).values()}"
+							th:value="${role.getRoleCode()}" th:text="${role.roleName}">ロール名</option>
+				</select>
+				<select class="rank_pulldown" th:field="*{rankCode}">
+						<option
+							th:each="rank : ${T(com.crecruit.enumclass.Rank).values()}"
+							th:value="${rank.getRankCode()}" th:text="${rank.rankName}">ランク</option>
+				</select>
+			</div>
+			<div th:object=${summoner5} class="team_create_summoner_row">
+				<label class="column_title"></label>
+				<input class="summoner_name_input" type="text" th:field="*{summonerName}" required>
+				<select class="role_pulldown" th:field="*{roleCode1}">
+						<option
+							th:each="role : ${T(com.crecruit.enumclass.Role).values()}"
+							th:value="${role.getRoleCode()}" th:text="${role.roleName}">ロール名</option>
+				</select>
+				<select class="rank_pulldown" th:field="*{rankCode}">
+						<option
+							th:each="rank : ${T(com.crecruit.enumclass.Rank).values()}"
+							th:value="${rank.getRankCode()}" th:text="${rank.rankName}">ランク</option>
+				</select>
+			</div>
+			<div class="team_create_row">
+				<label class="column_title">募集ランク帯</label>
+				<select th:field="*{maxRank}">
 					<option
 						th:each="rank : ${T(com.crecruit.enumclass.Rank).values()}"
 						th:value="${rank.getRankCode()}" th:text="${rank.rankName}">最大ランク</option>
-				</select></td>
-			</tr>
-			<tr>
-				<td>最低ランク</td>
-				<td><select th:field="*{minRank}">
+				</select>
+				<span class="margin-l-5 fs-12">から</span>
+				<select class="margin-l-5" th:field="*{minRank}">
 					<option
 						th:each="rank : ${T(com.crecruit.enumclass.Rank).values()}"
 						th:value="${rank.getRankCode()}" th:text="${rank.rankName}">最低ランク</option>
-				</select></td>
-			</tr>
-			<tr>
-				<td>募集ロール</td>
-				<td><select th:field="*{recruitedRole1}">
-					<option
-						th:each="role : ${T(com.crecruit.enumclass.Role).values()}"
-						th:value="${role.getRoleCode()}" th:text="${role.roleName}">最低ランク</option>
-				</select></td>
-			</tr>
-			<tbody th:object=${member}>
-				<tr>
-					<td>サモナーネーム(リーダー)</td>
-					<td><input type="text" th:field="*{summonerName}" required></td>
-				</tr>
-				<tr>
-					<td>ロール</td>
-					<td><select th:field="*{roleCode1}">
-							<option
-								th:each="role : ${T(com.crecruit.enumclass.Role).values()}"
-								th:value="${role.getRoleCode()}" th:text="${role.roleName}">ロール名</option>
-					</select></td>
-				</tr>
-				<tr>
-					<td>ランク</td>
-					<td><select th:field="*{rankCode}">
-							<option
-								th:each="rank : ${T(com.crecruit.enumclass.Rank).values()}"
-								th:value="${rank.getRankCode()}" th:text="${rank.rankName}">ランク</option>
-					</select></td>
-				</tr>
-			</tbody>
-			<tr>
-				<td>チーム紹介文</td>
-				<td><textarea th:field="*{teamIntroduction}"></textarea></td>
-			</tr>
-			<tr>
-				<td>パスワード（このパスワードでチーム詳細画面へのアクセスを制限します）</td>
-				<td><input type="text" th:field="*{password}"></input></td>
-			</tr>
-		</table>
+				</select>
+				<span class="margin-l-5 fs-12">まで</span>
+			</div>
+			<div class="team_create_row">
+				<label class="column_title">募集ロール</label>
+				<input type="hidden" name="isRecruitedTop" value=0>
+				<input type="checkbox" name="isRecruitedTop" value=1>
+				<span class="margin-l-5 fs-12">Top</span>
+				<input type="hidden" name="isRecruitedJG" value=0>
+				<input type="checkbox" name="isRecruitedJG" value=1>
+				<span class="margin-l-5 fs-12">JG</span>
+				<input type="hidden" name="isRecruitedMid" value=0>
+				<input type="checkbox" name="isRecruitedMid" value=1>
+				<span class="margin-l-5 fs-12">Mid</span>
+				<input type="hidden" name="isRecruitedBot" value=0>
+				<input type="checkbox" name="isRecruitedBot" value=1>
+				<span class="margin-l-5 fs-12">Bot</span>
+				<input type="hidden" name="isRecruitedSup" value=0>
+				<input type="checkbox" name="isRecruitedSup" value=1>
+				<span class="margin-l-5 fs-12">Sup</span>
+			</div>
+			<div class="team_create_row">
+				<label class="column_title">チーム紹介文</label>
+				<textarea class="team_intro_textarea" th:field="*{teamIntroduction}"></textarea>
+			</div>
+			<div class="team_create_row">
+				<label class="column_title">パスワード</label>
+				<input type="text" th:field="*{password}">
+			</div>
 		<button type="submit">メンバーを募集する</button>
 	</form>
+	<div th:replace="common/footer :: footer"></div>
 </body>
 </html>

@@ -1,8 +1,8 @@
 package com.crecruit.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.crecruit.entity.Team;
@@ -15,8 +15,8 @@ public class TeamSearchService {
 	@Autowired
 	private TeamRepository teamRepository;
 
-	public Page<Team> searchAllTeam(Pageable pageable) {
+	public List<Team> searchAllTeam() {
 		// 全チームを検索する
-		return teamRepository.findAll(pageable);
+		return teamRepository.findAllTeam();
 	}
 }

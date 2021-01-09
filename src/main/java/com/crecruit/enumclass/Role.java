@@ -3,19 +3,19 @@ package com.crecruit.enumclass;
 public enum Role {
 
 	// トップ
-	Top(1, "Top"),
+	TOP(1, "Top"),
 
 	// ジャングル
 	JG(2, "JG"),
 
 	// ミッド
-	Mid(3, "Mid"),
+	MID(3, "Mid"),
 
 	// ボット
-	Bot(4, "Bot"),
+	BOT(4, "Bot"),
 
 	// サポート
-	Sup(5, "Sup");
+	SUP(5, "Sup");
 
 	// ロールコード
 	private int roleCode;

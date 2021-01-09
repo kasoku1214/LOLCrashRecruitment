@@ -32,6 +32,21 @@ header {
 	margin-bottom: 10px;
 }
 
+/*フッター*/
+footer {
+	margin-top: 50px;
+	background: #EDEDF4;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	height: 100px;
+	background: #EDEDF4;
+}
+
+.copylight {
+	text-align: center;
+	line-height: 100px;
+	font-size: 14px;
+}
+
 /*topページ*/
 .team_card {
 	height: 340px;
@@ -118,14 +133,14 @@ header {
 	padding-bottom: 2px;
 }
 
-.member {
+.summoner {
 	position: relative;
 	top: 7px;
-	left: 90px;
-	margin-top:3px;
+	text-align: center;
+	margin-top: 3px;
 }
 
-.member_role {
+.summoner_role {
 	vertical-align: super;
 	font-family: Source Code Pro;
 	font-size: 6.5px;
@@ -133,12 +148,12 @@ header {
 	color: #000000;
 }
 
-.member_rank {
+.summoner_rank {
 	position: relative;
 	left: 19px;
 }
 
-.team_introduction{
+.team_introduction {
 	position: relative;
 	top: 20px;
 	margin: auto;
@@ -147,12 +162,70 @@ header {
 	width: 276px;
 }
 
-.team_introductionContent{
+.team_introductionContent {
 	position: relative;
-	top:10px;
-	left:10px;
+	top: 10px;
+	left: 10px;
 }
 
+/*メンバー募集ページ*/
+.team_create_form {
+	position: relative;
+	margin: auto;
+	width: 640px;
+	background: #EDEDF4;
+	border-radius: 11px;
+}
+
+.team_create_form_title {
+	height: 40px;
+	background: #3D3D42;
+	border-radius: 23px 23px 0px 0px;
+	font-size: 24px;
+	color: #EDEDF4;
+	text-align: center;
+	line-height: 40px;
+}
+
+.column_title {
+	display: inline-block;
+	width: 150px;
+	font-size: 14px;
+	text-align: right;
+	vertical-align: top;
+	margin-right: 20px;
+}
+
+.team_create_row {
+	margin-top: 15px;
+}
+
+.team_create_summoner_row {
+	margin-top: 10px;
+}
+
+.team_name_input {
+	width: 250px;
+}
+
+.summoner_name_input {
+	width: 170px;
+}
+
+.role_pulldown {
+	margin-left: 60px;
+}
+
+.rank_pulldown {
+	margin-left: 4px;
+}
+
+.team_intro_textarea {
+	height: 200px;
+	width: 390px;
+}
+
+/*共通部品*/
 body {
 	margin: 0px;
 	background: #E5E5E5;
@@ -166,13 +239,29 @@ body {
 	height: 27px;
 }
 
+.w-400 {
+	width: 400px;
+}
+
+.margin-l-5 {
+	margin-left: 5px;
+}
+
+.fs-12 {
+	font-size: 12px;
+}
+
 .center {
 	text-align: center;
 }
 
 /*カラー*/
 .iron {
+	background: #70696b
+}
 
+.bronze {
+	background: #8e4d30;
 }
 
 .silver {
@@ -181,4 +270,24 @@ body {
 
 .gold {
 	background: #ffd700;
+}
+
+.platinum {
+	background: #21acbc;
+}
+
+.diamond {
+	background: #8cabe7;
+}
+
+.master {
+	background: #e326ee;
+}
+
+.grandmaster {
+	background: #fb2f32;
+}
+
+.challenger {
+	background: #fcedd3;
 }

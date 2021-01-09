@@ -1,12 +1,14 @@
 package com.crecruit.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.crecruit.entity.Member;
+import com.crecruit.entity.Summoner;
 import com.crecruit.entity.Team;
-import com.crecruit.repository.MemberRepository;
+import com.crecruit.repository.SummonerRepository;
 import com.crecruit.repository.TeamRepository;
 
 @Service
@@ -18,28 +20,34 @@ public class TeamRegisterService {
 
 	// メンバーリポジトリ
 	@Autowired
-	private MemberRepository memberRepository;
+	private SummonerRepository summonerRepository;
 
 	@Transactional
-	public String CreateTeam(Team team, Member member) {
+	public String CreateTeam(Team team, List<Summoner> summonerList) {
 
 		String messageText = null;
 
-		// メンバーIDを生成し、memberに設定
-		Integer memberId = memberRepository.getNextSeriesId();
-		member.setMemberId(memberId);
-
-		// チームIDを生成し、teamとmemberに設定
+		// チームIDを生成し、teamに設定
 		Integer teamId = teamRepository.getNextSeriesId();
 		team.setTeamId(teamId);
-		member.setTeamId(teamId);
 
 		// チームを登録
 		teamRepository.save(team);
 
-		// メンバーを登録
-		memberRepository.save(member);
+		// 以下メンバーの登録
+		for (Summoner summoner: summonerList) {
+			// サモナーIDの生成
+			Integer summmonerId = summonerRepository.getNextSeriesId();
 
+			// サモナーIDをsummonerに設定
+			summoner.setSummonerId(summmonerId);
+
+			// チームIDをsummonerに設定
+			summoner.setTeamId(teamId);
+
+			// メンバーを登録
+			summonerRepository.save(summoner);
+		}
 		return messageText;
 	}
 }

@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -32,17 +31,20 @@ public class Team {
 	@Column(name = "min_rank")
 	private Integer minRank;
 
-	@Column(name = "recruited_role_1")
-	private Integer recruitedRole1;
+	@Column(name = "is_recruited_top")
+	private Integer isRecruitedTop;
 
-	@Column(name = "recruited_role_2")
-	private Integer recruitedRole2;
+	@Column(name = "is_recruited_jg")
+	private Integer isRecruitedJG;
 
-	@Column(name = "recruited_role_3")
-	private Integer recruitedRole3;
+	@Column(name = "is_recruited_mid")
+	private Integer isRecruitedMid;
 
-	@Column(name = "recruited_role_4")
-	private Integer recruitedRole4;
+	@Column(name = "is_recruited_bot")
+	private Integer isRecruitedBot;
+
+	@Column(name = "is_recruited_sup")
+	private Integer isRecruitedSup;
 
 	@Column(name = "team_introduction")
 	private String teamIntroduction;
@@ -50,8 +52,7 @@ public class Team {
 	@Column(name = "password")
 	private String password;
 
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany()
     @JoinColumn(name = "team_id")
-	private List<Member> memberList;
-
+	private List<Summoner> summonerList;
 }
