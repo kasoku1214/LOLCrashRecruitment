@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="/css/common.css">
 <meta charset="UTF-8">
 	<title>Crash募集</title>
 </head>
@@ -10,7 +10,9 @@
 	<br><br>
 	<div class="grid">
 		<div class="team_card" th:each="team, teamStat:${teamList}">
-			<div class="card_title" th:text="${team.teamName}"></div>
+			<div class="card_title">
+				<a class="card_title_link" th:href="@{/team_detail/__${team.teamId}__}" th:text="${team.teamName}"></a>
+			</div>
 			<div class="min_rank" th:id="'minRank' + ${teamStat.index}"
 				th:text="${T(com.crecruit.enumclass.Rank).getRankNameByRankCode(team.getMinRank())}"></div>
 			<div class="max_rank" th:id="'maxRank' + ${teamStat.index}"
@@ -35,6 +37,6 @@
 		</div>
 	</div>
 	<div th:replace="common/footer :: footer"></div>
-<script src="js/team_search.js"></script>
+<script src="/js/team_search.js"></script>
 </body>
 </html>

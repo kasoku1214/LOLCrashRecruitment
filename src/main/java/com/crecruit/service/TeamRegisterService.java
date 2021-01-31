@@ -1,7 +1,5 @@
 package com.crecruit.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +21,7 @@ public class TeamRegisterService {
 	private SummonerRepository summonerRepository;
 
 	@Transactional
-	public String CreateTeam(Team team, List<Summoner> summonerList) {
+	public String CreateTeam(Team team) {
 
 		String messageText = null;
 
@@ -31,11 +29,8 @@ public class TeamRegisterService {
 		Integer teamId = teamRepository.getNextSeriesId();
 		team.setTeamId(teamId);
 
-		// チームを登録
-		teamRepository.save(team);
-
 		// 以下メンバーの登録
-		for (Summoner summoner: summonerList) {
+		for (Summoner summoner: team.getSummonerList()) {
 			// サモナーIDの生成
 			Integer summmonerId = summonerRepository.getNextSeriesId();
 
@@ -44,10 +39,11 @@ public class TeamRegisterService {
 
 			// チームIDをsummonerに設定
 			summoner.setTeamId(teamId);
-
-			// メンバーを登録
-			summonerRepository.save(summoner);
 		}
+
+		// チームを登録
+		teamRepository.save(team);
+
 		return messageText;
 	}
 }

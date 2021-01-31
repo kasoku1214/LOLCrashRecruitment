@@ -1,7 +1,7 @@
 /*ヘッダー*/
 header {
 	background: #3D3D42;
-	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
 }
 
 .search_button {
@@ -13,7 +13,7 @@ header {
 	margin-bottom: 10px;
 	background: #B7F4BD;
 	border-radius: 9px;
-	filter: drop-shadow(5px 5px 4px rgba(0, 0, 0, 0.25));
+	filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));
 }
 
 .titleName {
@@ -52,7 +52,7 @@ footer {
 	height: 340px;
 	width: 315px;
 	background: #eedff9;
-	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
 	border-radius: 23px;
 }
 
@@ -73,6 +73,9 @@ footer {
 	font-size: 18px;
 	line-height: 54px;
 	text-align: center;
+}
+
+.card_title_link {
 	color: #EDEDF4;
 }
 
@@ -196,8 +199,14 @@ footer {
 	margin-right: 20px;
 }
 
+.column_caution {
+	display: inline-block;
+	font-size: 10px;
+	margin-left: 80px;
+}
+
 .team_create_row {
-	margin-top: 15px;
+	margin-top: 25px;
 }
 
 .team_create_summoner_row {
@@ -206,29 +215,125 @@ footer {
 
 .team_name_input {
 	width: 250px;
+	vertical-align: top;
 }
 
 .summoner_name_input {
 	width: 170px;
+	vertical-align: top;
 }
 
 .role_pulldown {
 	margin-left: 60px;
+	vertical-align: top;
 }
 
 .rank_pulldown {
 	margin-left: 4px;
+	vertical-align: top;
 }
 
 .team_intro_textarea {
 	height: 200px;
 	width: 390px;
+	vertical-align: top;
+}
+
+.password_input {
+	vertical-align: top;
+}
+
+.register_button {
+	background: #B7F4BD;
+	border-radius: 9px;
+	border: none;
+	filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));
+	width: 80px;
+	height: 30px;
+	margin-top: 65px;
+	margin-left: 460px;
+	margin-bottom: 40px;
+}
+
+/*チーム詳細ページ*/
+.team_detail_form {
+	position: relative;
+	margin: auto;
+	width: 640px;
+	background: #EDEDF4;
+	border-radius: 11px;
+}
+
+.team_detail_form_title {
+	height: 40px;
+	background: #3D3D42;
+	border-radius: 23px 23px 0px 0px;
+	font-size: 24px;
+	color: #EDEDF4;
+	text-align: center;
+	line-height: 40px;
+}
+
+.detail_column_title {
+	display: inline-block;
+	width: 150px;
+	font-size: 14px;
+	text-align: right;
+	margin-right: 20px;
+}
+
+.detail_team_name {
+	width: 250px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.summoner_table {
+	border-spacing: 2px 10px;
+}
+
+.detail_summoner_name {
+	width: 220px;
+}
+
+.detail_summoner_role {
+	filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));
+	background: #E6A162;
+	border-radius: 5px;
+	font-size: 12px;
+	color: #000000;
+	display: inline-block;
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+.detail_summoner_rank {
+	filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));
+	border-radius: 5px;
+	font-size: 12px;
+	color: #000000;
+	display: inline-block;
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	margin-left:10px;
 }
 
 /*共通部品*/
 body {
 	margin: 0px;
 	background: #E5E5E5;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	color: #70696b;
 }
 
 .h-18 {
@@ -247,12 +352,28 @@ body {
 	margin-left: 5px;
 }
 
+.margin-t-15 {
+	margin-top: 15px;
+}
+
+.margin-t-20 {
+	margin-top: 20px;
+}
+
+.margin-t-25 {
+	margin-top: 25px;
+}
+
 .fs-12 {
 	font-size: 12px;
 }
 
 .center {
 	text-align: center;
+}
+
+.va-top {
+	vertical-align: top;
 }
 
 /*カラー*/
@@ -290,4 +411,8 @@ body {
 
 .challenger {
 	background: #fcedd3;
+}
+
+.red {
+	color: #ea4024;
 }

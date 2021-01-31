@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="/css/common.css">
+<meta charset="UTF-8">
+<title>Crashメンバー募集</title>
+</head>
+<body>
+	<div th:replace="common/header :: header"></div>
+	<br><br>
+	<div class="team_detail_form" th:object="${team}">
+		<div class="team_detail_form_title">チーム情報</div>
+		<div class="margin-t-25">
+			<label class="detail_column_title">チーム名</label>
+			<span class="detail_team_name" th:text="*{teamName}"></span>
+		</div>
+		<table class="margin-t-15 summoner_table">
+			<tr th:each="summoner, stat:${team.summonerList}">
+				<td th:if="${stat.index}==0">
+					<label class="detail_column_title">サモナーネーム</label>
+				</td>
+				<td th:if="${stat.index}!=0" class="margin-t-20">
+					<label class="detail_column_title"></label>
+				</td>
+				<td class="detail_summoner_name" th:text="*{summonerList[__${stat.index}__].summonerName}"></td>
+				<td class="detail_summoner_role" th:text="${T(com.crecruit.enumclass.Role).getRoleNameByRoleCode(summoner.roleCode1)}"></td>
+				<td class="detail_summoner_rank" th:id="'detail_summoner_rank' + ${stat.index}"
+					th:text="${T(com.crecruit.enumclass.Rank).getRankNameByRankCode(summoner.rankCode)}"></td>
+		</table>
+		<div class="team_create_row">
+			<label class="column_title">募集ランク帯</label>
+			<span class="detail_summoner_rank va-top" th:text="${T(com.crecruit.enumclass.Rank).getRankNameByRankCode(team.maxRank)}"></span>
+			<span class="margin-l-5 fs-12 va-top">から</span>
+			<span class="detail_summoner_rank va-top" th:text="${T(com.crecruit.enumclass.Rank).getRankNameByRankCode(team.minRank)}"></span>
+			<span class="margin-l-5 fs-12 va-top">まで</span>
+		</div>
+		<div class="team_create_row">
+			<label class="column_title">募集ロール</label>
+			<input class="va-top" type="checkbox" name="isRecruitedTop" value=1>
+			<input type="hidden" name="isRecruitedTop" value=0>
+			<span class="margin-l-5 fs-12 va-top">Top</span>
+			<input class="va-top" type="checkbox" name="isRecruitedJG" value=1>
+			<input type="hidden" name="isRecruitedJG" value=0>
+			<span class="margin-l-5 fs-12 va-top">JG</span>
+			<input class="va-top" type="checkbox" name="isRecruitedMid" value=1>
+			<input type="hidden" name="isRecruitedMid" value=0>
+			<span class="margin-l-5 fs-12 va-top">Mid</span>
+			<input class="va-top" type="checkbox" name="isRecruitedBot" value=1>
+			<input type="hidden" name="isRecruitedBot" value=0>
+			<span class="margin-l-5 fs-12 va-top">Bot</span>
+			<input class="va-top" type="checkbox" name="isRecruitedSup" value=1>
+			<input type="hidden" name="isRecruitedSup" value=0>
+			<span class="margin-l-5 fs-12 va-top">Sup</span>
+		</div>
+		<div class="team_create_row">
+			<label class="column_title">チーム紹介文</label>
+			<textarea class="team_intro_textarea" th:field="*{teamIntroduction}"></textarea>
+		</div>
+		<div class="team_create_row">
+			<label class="column_title">パスワード</label>
+			<input class="password_input" type="password" th:field="*{password}">
+		</div>
+		<div class="column_caution red">※チーム情報の修正や更新にはパスワードが必要になります</div>
+	</div>
+	<div th:replace="common/footer :: footer"></div>
+<script src="/js/team_detail.js"></script>
+</body>
+</html>
