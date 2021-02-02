@@ -13,7 +13,11 @@ window.onload = function() {
 	}
 
 	// 募集ランクに色をつける
+	var maxRankTag = document.getElementById('max_rank');
+	changeRankColor(maxRankTag);
 
+	var minRankTag = document.getElementById('min_rank');
+	changeRankColor(minRankTag);
 }
 
 //

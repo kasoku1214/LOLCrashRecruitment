@@ -7,7 +7,7 @@
 <body th:fragment="header">
 	<header>
 		<a href="/" class="titleName">CLASH.GG</a>
-		<form class="team_search_form" th:action="team_search" th:object="${teamSearchForm}">
+		<form class="team_search_form" th:action="@{/team_search}" th:object="${teamSearchForm}">
 			<select class="h-27" th:field="*{roleCode}">
 				<option th:value="0" th:text="any"></option>
 				<option th:each="role : ${T(com.crecruit.enumclass.Role).values()}"
@@ -20,7 +20,7 @@
 				<img class="h-18" src="/img/search_icon.svg">
 			</button>
 		</form>
-		<form class="center" action="team_register">
+		<form class="center" th:action="@{/team_register}">
 			<button class="to_register_page_button">メンバーを募集する</button>
 		</form>
 	</header>

@@ -17,14 +17,14 @@ public interface TeamRepository extends JpaRepository<Team, Integer> {
 	public Integer getNextSeriesId();
 
 	// 全チームを検索する
-	@Query(value = "SELECT * FROM team", nativeQuery = true)
+	@Query(value = "SELECT * FROM team ORDER BY updated_at DESC", nativeQuery = true)
 	public List<Team> findAllTeam();
 
 	// 検索条件(rankCode,roleCode)からチームを検索する
 	@Query(value = "SELECT * FROM team WHERE (team.is_recruited_top = :isRecruitedTop OR "
 			+ "team.is_recruited_jg = :isRecruitedJG OR team.is_recruited_mid = :isRecruitedMid OR "
 			+ "team.is_recruited_bot = :isRecruitedBot OR team.is_recruited_sup = :isRecruitedSup) AND "
-			+ "team.max_rank >= :rankCode AND team.min_rank <= :rankCode", nativeQuery = true)
+			+ "team.max_rank >= :rankCode AND team.min_rank <= :rankCode ORDER BY updated_at DESC", nativeQuery = true)
 	public List<Team> findByRoleCodeAndRankCode(@Param("isRecruitedTop") Integer isRecruitedTop,
 			@Param("isRecruitedJG") Integer isRecruitedJG, @Param("isRecruitedMid") Integer isRecruitedMid,
 			@Param("isRecruitedBot") Integer isRecruitedBot, @Param("isRecruitedSup") Integer isRecruitedSup,
@@ -33,13 +33,15 @@ public interface TeamRepository extends JpaRepository<Team, Integer> {
 	// 検索条件(roleCode)からチームを検索する
 	@Query(value = "SELECT * FROM team WHERE (team.is_recruited_top = :isRecruitedTop OR "
 			+ "team.is_recruited_jg = :isRecruitedJG OR team.is_recruited_mid = :isRecruitedMid OR "
-			+ "team.is_recruited_bot = :isRecruitedBot OR team.is_recruited_sup = :isRecruitedSup)", nativeQuery = true)
+			+ "team.is_recruited_bot = :isRecruitedBot OR team.is_recruited_sup = :isRecruitedSup) "
+			+ "ORDER BY updated_at DESC", nativeQuery = true)
 	public List<Team> findByRoleCode(@Param("isRecruitedTop") Integer isRecruitedTop,
 			@Param("isRecruitedJG") Integer isRecruitedJG, @Param("isRecruitedMid") Integer isRecruitedMid,
 			@Param("isRecruitedBot") Integer isRecruitedBot, @Param("isRecruitedSup") Integer isRecruitedSup);
 
 	// 検索条件(rankCode)からチームを検索する
-	@Query(value = "SELECT * FROM team WHERE team.max_rank >= :rankCode AND team.min_rank <= :rankCode", nativeQuery = true)
+	@Query(value = "SELECT * FROM team WHERE team.max_rank >= :rankCode AND team.min_rank <= :rankCode "
+			+ "ORDER BY updated_at DESC", nativeQuery = true)
 	public List<Team> findByRankCode(@Param("rankCode") Integer rankCode);
 
 }

@@ -41,7 +41,6 @@ public class TeamRegisterController {
     public Team CreateTeamForRegister(){
     	// Teamを生成
         Team team = new Team();
-
         // メンバーリストを生成
         List<Summoner> summonerList = new ArrayList<Summoner>();
 

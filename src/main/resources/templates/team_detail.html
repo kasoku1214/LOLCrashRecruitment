@@ -6,7 +6,7 @@
 <title>Crashメンバー募集</title>
 </head>
 <body>
-	<div th:replace="common/header :: header"></div>
+	<div th:replace="/common/header :: header"></div>
 	<br><br>
 	<div class="team_detail_form" th:object="${team}">
 		<div class="team_detail_form_title">チーム情報</div>
@@ -29,40 +29,34 @@
 		</table>
 		<div class="team_create_row">
 			<label class="column_title">募集ランク帯</label>
-			<span class="detail_summoner_rank va-top" th:text="${T(com.crecruit.enumclass.Rank).getRankNameByRankCode(team.maxRank)}"></span>
+			<span class="detail_summoner_rank va-top" id="max_rank" th:text="${T(com.crecruit.enumclass.Rank).getRankNameByRankCode(team.maxRank)}"></span>
 			<span class="margin-l-5 fs-12 va-top">から</span>
-			<span class="detail_summoner_rank va-top" th:text="${T(com.crecruit.enumclass.Rank).getRankNameByRankCode(team.minRank)}"></span>
+			<span class="detail_summoner_rank va-top" id="min_rank" th:text="${T(com.crecruit.enumclass.Rank).getRankNameByRankCode(team.minRank)}"></span>
 			<span class="margin-l-5 fs-12 va-top">まで</span>
 		</div>
 		<div class="team_create_row">
 			<label class="column_title">募集ロール</label>
-			<input class="va-top" type="checkbox" name="isRecruitedTop" value=1>
-			<input type="hidden" name="isRecruitedTop" value=0>
-			<span class="margin-l-5 fs-12 va-top">Top</span>
-			<input class="va-top" type="checkbox" name="isRecruitedJG" value=1>
-			<input type="hidden" name="isRecruitedJG" value=0>
-			<span class="margin-l-5 fs-12 va-top">JG</span>
-			<input class="va-top" type="checkbox" name="isRecruitedMid" value=1>
-			<input type="hidden" name="isRecruitedMid" value=0>
-			<span class="margin-l-5 fs-12 va-top">Mid</span>
-			<input class="va-top" type="checkbox" name="isRecruitedBot" value=1>
-			<input type="hidden" name="isRecruitedBot" value=0>
-			<span class="margin-l-5 fs-12 va-top">Bot</span>
-			<input class="va-top" type="checkbox" name="isRecruitedSup" value=1>
-			<input type="hidden" name="isRecruitedSup" value=0>
-			<span class="margin-l-5 fs-12 va-top">Sup</span>
+			<span th:if="*{isRecruitedTop==1}" class="margin-l-5 fs-12 va-top">Top</span>
+			<span th:if="*{isRecruitedJG==1}" class="margin-l-5 fs-12/ va-top">JG</span>
+			<span th:if="*{isRecruitedMid==1}" class="margin-l-5 fs-12 va-top">Mid</span>
+			<span th:if="*{isRecruitedBot==1}" class="margin-l-5 fs-12 va-top">Bot</span>
+			<span th:if="*{isRecruitedSup==1}" class="margin-l-5 fs-12 va-top">Sup</span>
 		</div>
 		<div class="team_create_row">
 			<label class="column_title">チーム紹介文</label>
-			<textarea class="team_intro_textarea" th:field="*{teamIntroduction}"></textarea>
+			<span class="detail_team_introduction fs-12" th:text="*{teamIntroduction}"></span>
 		</div>
-		<div class="team_create_row">
-			<label class="column_title">パスワード</label>
-			<input class="password_input" type="password" th:field="*{password}">
-		</div>
-		<div class="column_caution red">※チーム情報の修正や更新にはパスワードが必要になります</div>
+		<form class="" th:action="@{/team_edit}" th:object="${passwordForm}">
+			<div class="team_create_row">
+				<label class="column_title">パスワード</label>
+				<input class="password_input" type="password" th:field="*{password}">
+				<input type="hidden" th:field="*{teamId}">
+			</div>
+			<div class="column_caution red">※チーム情報の修正や更新にはパスワードが必要になります</div>
+			<button class="edit_button" type="submit">編集</button>
+		</form>
 	</div>
-	<div th:replace="common/footer :: footer"></div>
+	<div th:replace="/common/footer :: footer"></div>
 <script src="/js/team_detail.js"></script>
 </body>
 </html>
