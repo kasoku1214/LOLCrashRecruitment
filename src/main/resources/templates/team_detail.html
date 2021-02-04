@@ -3,11 +3,12 @@
 <head>
 <link rel="stylesheet" href="/css/common.css">
 <meta charset="UTF-8">
-<title>Crashメンバー募集</title>
+<title>Crashチーム情報</title>
 </head>
 <body>
 	<div th:replace="/common/header :: header"></div>
 	<br><br>
+	<div th:if="${isError}" class="message_error">パスワードが違います。</div>
 	<div class="team_detail_form" th:object="${team}">
 		<div class="team_detail_form_title">チーム情報</div>
 		<div class="margin-t-25">
@@ -46,7 +47,7 @@
 			<label class="column_title">チーム紹介文</label>
 			<span class="detail_team_introduction fs-12" th:text="*{teamIntroduction}"></span>
 		</div>
-		<form class="" th:action="@{/team_edit}" th:object="${passwordForm}">
+		<form class="" method="post" th:action="@{/open_team_edit}" th:object="${passwordForm}">
 			<div class="team_create_row">
 				<label class="column_title">パスワード</label>
 				<input class="password_input" type="password" th:field="*{password}">

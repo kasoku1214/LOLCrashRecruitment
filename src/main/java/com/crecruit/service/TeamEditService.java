@@ -10,35 +10,42 @@ import com.crecruit.repository.SummonerRepository;
 import com.crecruit.repository.TeamRepository;
 
 @Service
-public class TeamRegisterService {
+public class TeamEditService {
 
 	// チームリポジトリ
 	@Autowired
 	private TeamRepository teamRepository;
 
-	// メンバーリポジトリ
+	// サモナーリポジトリ
 	@Autowired
 	private SummonerRepository summonerRepository;
 
+	/**
+	 * チームIDからチームの検索メソッド
+	 * @return チームorNUll
+	 */
+	public Team findByTeamId(Integer teamId) {
+		// 全チームを検索する
+		return teamRepository.findById(teamId).orElse(null);
+	}
+
 	@Transactional
-	public String createTeam(Team team) {
+	public String editTeam(Team team) {
 
 		String messageText = null;
 
-		// チームIDを生成し、teamに設定
-		Integer teamId = teamRepository.getNextSeriesId();
-		team.setTeamId(teamId);
-
 		// 以下メンバーの登録
 		for (Summoner summoner: team.getSummonerList()) {
-			// サモナーIDの生成
-			Integer summmonerId = summonerRepository.getNextSeriesId();
-
-			// サモナーIDをsummonerに設定
-			summoner.setSummonerId(summmonerId);
+			// 新規サモナーか判定
+			if (summoner.getSummonerId() == null) {
+				// サモナーIDの生成
+				Integer summmonerId = summonerRepository.getNextSeriesId();
+				// サモナーIDをsummonerに設定
+				summoner.setSummonerId(summmonerId);
+			}
 
 			// チームIDをsummonerに設定
-			summoner.setTeamId(teamId);
+			summoner.setTeamId(team.getTeamId());
 		}
 
 		// チームを登録
@@ -46,4 +53,5 @@ public class TeamRegisterService {
 
 		return messageText;
 	}
+
 }

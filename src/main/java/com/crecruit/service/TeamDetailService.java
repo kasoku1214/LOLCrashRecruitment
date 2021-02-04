@@ -14,7 +14,7 @@ public class TeamDetailService {
 	private TeamRepository teamRepository;
 
 	/**
-	 * チーム名からチームの検索メソッド
+	 * チームIDからチームの検索メソッド
 	 * @return チームorNUll
 	 */
 	public Team findByTeamId(Integer teamId) {

@@ -17,7 +17,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "team")
-public class Team {
+public class Team{
 
 	@Id
 	@Column(name = "team_id")

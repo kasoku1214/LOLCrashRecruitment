@@ -8,27 +8,27 @@
 <body>
 	<div th:replace="/common/header :: header"></div>
 	<br><br>
-	<form class="team_create_form" th:action="@{team_create}" method="post" th:object="${team}" onsubmit="return alertRegistration();">
+	<form class="team_create_form" th:action="@{team_register}" method="post" th:object="${team}" onsubmit="return alertRegistration();">
 		<div class="team_create_form_title">メンバー募集</div>
 		<div class="team_create_row">
 			<label class="column_title">チーム名</label>
 			<input class="team_name_input" type="text" th:field="*{teamName}" required>
 		</div>
-		<div th:each="summoner, stat:${team.summonerList}">
-			<div th:if="${stat.index}==0"  class="team_create_row"></div>
-			<div th:if="${stat.index}!=0"  class="team_create_summoner_row"></div>
-			<label th:if="${stat.index}==0" class="column_title">サモナーネーム</label>
-			<label th:if="${stat.index}!=0" class="column_title"></label>
-			<input th:if="${stat.index}==0" class="summoner_name_input" type="text"
-			th:field="*{summonerList[__${stat.index}__].summonerName}" required>
-			<input th:if="${stat.index}!=0" class="summoner_name_input" type="text"
-			th:field="*{summonerList[__${stat.index}__].summonerName}">
-			<select class="role_pulldown" th:field="*{summonerList[__${stat.index}__].roleCode1}">
+		<div th:each="i : ${#numbers.sequence(0,4)}">
+			<div th:if="${i}==0"  class="team_create_row"></div>
+			<div th:if="${i}!=0"  class="team_create_summoner_row"></div>
+			<label th:if="${i}==0" class="column_title">サモナーネーム</label>
+			<label th:if="${i}!=0" class="column_title"></label>
+			<input th:if="${i}==0" class="summoner_name_input" type="text"
+			th:field="*{summonerList[__${i}__].summonerName}" required>
+			<input th:if="${i}!=0" class="summoner_name_input" type="text"
+			th:field="*{summonerList[__${i}__].summonerName}">
+			<select class="role_pulldown" th:field="*{summonerList[__${i}__].roleCode1}">
 					<option
 						th:each="role : ${T(com.crecruit.enumclass.Role).values()}"
 						th:value="${role.getRoleCode()}" th:text="${role.roleName}">ロール名</option>
 			</select>
-			<select class="rank_pulldown" th:field="*{summonerList[__${stat.index}__].rankCode}">
+			<select class="rank_pulldown" th:field="*{summonerList[__${i}__].rankCode}">
 					<option
 						th:each="rank : ${T(com.crecruit.enumclass.Rank).values()}"
 						th:value="${rank.getRankCode()}" th:text="${rank.rankName}">ランク</option>

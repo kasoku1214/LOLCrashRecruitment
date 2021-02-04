@@ -41,20 +41,10 @@ public class TeamRegisterController {
     public Team CreateTeamForRegister(){
     	// Teamを生成
         Team team = new Team();
-        // メンバーリストを生成
-        List<Summoner> summonerList = new ArrayList<Summoner>();
-
-        // メンバーを５人生成
-        for (int i = 0; i < 5; i++) {
-        	summonerList.add(new Summoner());
-        }
-
-        // チームにメンバーリストを渡す
-        team.setSummonerList(summonerList);
         return team;
     }
 
-	@RequestMapping(value = "/team_register")
+	@RequestMapping(value = "/open_team_register")
 	public ModelAndView openRegisterTeamPage(ModelAndView modelAndView) {
 
 		// チーム登録画面に遷移
@@ -63,8 +53,8 @@ public class TeamRegisterController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/team_create")
-	public ModelAndView registerTeam(ModelAndView modelAndView, Team team) {
+	@RequestMapping(value = "/team_register")
+	public String registerTeam(ModelAndView modelAndView, Team team) {
 
 		// 登録するサモナーリスト
 		List<Summoner> summonerList =new ArrayList<Summoner>();
@@ -80,11 +70,8 @@ public class TeamRegisterController {
 		team.setSummonerList(summonerList);
 
 		// チームとメンバーを登録
-		teamRegisterService.CreateTeam(team);
+		teamRegisterService.createTeam(team);
 
-		// トープページに遷移
-		modelAndView = teamSearchController.searchAllTeam(modelAndView, null);
-
-		return modelAndView;
+		return "redirect:/";
 	}
 }

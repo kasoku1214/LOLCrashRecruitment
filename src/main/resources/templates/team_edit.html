@@ -3,32 +3,34 @@
 <head>
 <link rel="stylesheet" href="/css/common.css">
 <meta charset="UTF-8">
-<title>Crashメンバー募集</title>
+<title>Crashチーム編集</title>
 </head>
 <body>
 	<div th:replace="/common/header :: header"></div>
 	<br><br>
-	<form class="team_create_form" th:action="@{team_create}" method="post" th:object="${team}" onsubmit="return alertRegistration();">
-		<div class="team_create_form_title">メンバー募集</div>
+	<form class="team_create_form" th:action="@{team_edit}" method="post" th:object="${team}" onsubmit="return alertEdit();">
+		<div class="team_create_form_title">チーム情報編集</div>
+		<input type="hidden" th:field="*{teamId}">
 		<div class="team_create_row">
 			<label class="column_title">チーム名</label>
 			<input class="team_name_input" type="text" th:field="*{teamName}" required>
 		</div>
-		<div th:each="summoner, stat:${team.summonerList}">
-			<div th:if="${stat.index}==0"  class="team_create_row"></div>
-			<div th:if="${stat.index}!=0"  class="team_create_summoner_row"></div>
-			<label th:if="${stat.index}==0" class="column_title">サモナーネーム</label>
-			<label th:if="${stat.index}!=0" class="column_title"></label>
-			<input th:if="${stat.index}==0" class="summoner_name_input" type="text"
-			th:field="*{summonerList[__${stat.index}__].summonerName}" required>
-			<input th:if="${stat.index}!=0" class="summoner_name_input" type="text"
-			th:field="*{summonerList[__${stat.index}__].summonerName}">
-			<select class="role_pulldown" th:field="*{summonerList[__${stat.index}__].roleCode1}">
+		<div th:each="i : ${#numbers.sequence(0,4)}">
+			<input type="hidden" th:field="*{summonerList[__${i}__].summonerId}">
+			<div th:if="${i}==0"  class="team_create_row"></div>
+			<div th:if="${i}!=0"  class="team_create_summoner_row"></div>
+			<label th:if="${i}==0" class="column_title">サモナーネーム</label>
+			<label th:if="${i}!=0" class="column_title"></label>
+			<input th:if="${i}==0" class="summoner_name_input" type="text"
+			th:field="*{summonerList[__${i}__].summonerName}" required>
+			<input th:if="${i}!=0" class="summoner_name_input" type="text"
+			th:field="*{summonerList[__${i}__].summonerName}">
+			<select class="role_pulldown" th:field="*{summonerList[__${i}__].roleCode1}">
 					<option
 						th:each="role : ${T(com.crecruit.enumclass.Role).values()}"
 						th:value="${role.getRoleCode()}" th:text="${role.roleName}">ロール名</option>
 			</select>
-			<select class="rank_pulldown" th:field="*{summonerList[__${stat.index}__].rankCode}">
+			<select class="rank_pulldown" th:field="*{summonerList[__${i}__].rankCode}">
 					<option
 						th:each="rank : ${T(com.crecruit.enumclass.Rank).values()}"
 						th:value="${rank.getRankCode()}" th:text="${rank.rankName}">ランク</option>
@@ -51,19 +53,19 @@
 		</div>
 		<div class="team_create_row">
 			<label class="column_title">募集ロール</label>
-			<input class="va-top" type="checkbox" name="isRecruitedTop" value=1>
+			<input class="va-top" type="checkbox" name="isRecruitedTop" th:checked="*{isRecruitedTop==1}" value=1>
 			<input type="hidden" name="isRecruitedTop" value=0>
 			<span class="margin-l-5 fs-12 va-top">Top</span>
-			<input class="va-top" type="checkbox" name="isRecruitedJG" value=1>
+			<input class="va-top" type="checkbox" name="isRecruitedJG" th:checked="*{isRecruitedJG==1}" value=1>
 			<input type="hidden" name="isRecruitedJG" value=0>
 			<span class="margin-l-5 fs-12 va-top">JG</span>
-			<input class="va-top" type="checkbox" name="isRecruitedMid" value=1>
+			<input class="va-top" type="checkbox" name="isRecruitedMid" th:checked="*{isRecruitedMid==1}" value=1>
 			<input type="hidden" name="isRecruitedMid" value=0>
 			<span class="margin-l-5 fs-12 va-top">Mid</span>
-			<input class="va-top" type="checkbox" name="isRecruitedBot" value=1>
+			<input class="va-top" type="checkbox" name="isRecruitedBot" th:checked="*{isRecruitedBot==1}" value=1>
 			<input type="hidden" name="isRecruitedBot" value=0>
 			<span class="margin-l-5 fs-12 va-top">Bot</span>
-			<input class="va-top" type="checkbox" name="isRecruitedSup" value=1>
+			<input class="va-top" type="checkbox" name="isRecruitedSup" th:checked="*{isRecruitedSup==1}" value=1>
 			<input type="hidden" name="isRecruitedSup" value=0>
 			<span class="margin-l-5 fs-12 va-top">Sup</span>
 		</div>
@@ -77,9 +79,9 @@
 		</div>
 		<div class="column_caution red">※チーム情報の修正や更新にはパスワードが必要になります</div>
 		<br>
-		<button class="register_button" type="submit">募集</button>
+		<button class="register_button" type="submit">更新</button>
 	</form>
 	<div th:replace="/common/footer :: footer"></div>
-<script src="/js/team_register.js"></script>
+<script src="/js/team_edit.js"></script>
 </body>
 </html>

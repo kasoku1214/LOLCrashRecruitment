@@ -30,13 +30,13 @@ public class TeamDetailController {
 	}
 
 	/**
-	 * 編集判定用PasswordFormオブジェクトを初期化して返却する
-	 * @ruturn 編集判定用PasswordFormオブジェクト
+	 * エラーメッセージ表示判定オブジェクトを初期化して返却する
+	 * @ruturn エラーメッセージ表示判定オブジェクト
 	 */
-	@ModelAttribute("passwordForm")
-	public PasswordForm createPasswordForm() {
-		PasswordForm passwordForm = new PasswordForm();
-		return passwordForm;
+	@ModelAttribute("isError")
+	public boolean createIsError() {
+		boolean isError = false;
+		return isError;
 	}
 
 	@RequestMapping(value = "/team_detail/{teamId}")
@@ -56,34 +56,6 @@ public class TeamDetailController {
 
 		// チーム登録画面に遷移
 		modelAndView.setViewName("team_detail");
-
-		return modelAndView;
-	}
-
-	@RequestMapping(value = "/team_edit")
-	public ModelAndView openTeam(ModelAndView modelAndView, PasswordForm passwordForm) {
-
-		System.out.println(passwordForm.getTeamId());
-		System.out.println(passwordForm.getPassword());
-
-		// teamIDからチームを取得
-		Team team = teamDetailService.findByTeamId(passwordForm.getTeamId());
-
-		// 入力されたパスワードが間違っていた時
-		if (!team.getPassword().equals(passwordForm.getPassword())) {
-			// teamをMOVに格納
-			modelAndView.addObject("team", team);
-
-			// チーム登録画面に遷移
-			modelAndView.setViewName("team_detail");
-		}
-
-		// パスワードが正しかった時
-		// teamをMOVに格納
-		modelAndView.addObject("team", team);
-
-		// チーム編集画面に遷移
-		modelAndView.setViewName("team_edit");
 
 		return modelAndView;
 	}

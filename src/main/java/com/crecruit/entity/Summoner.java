@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "summoner")
-public class Summoner {
+public class Summoner{
 
 	@Id
 	@Column(name = "summoner_id")

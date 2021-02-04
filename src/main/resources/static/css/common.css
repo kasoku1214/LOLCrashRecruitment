@@ -172,6 +172,7 @@ footer {
 }
 
 /*メンバー募集ページ*/
+/*チーム情報編集ページ*/
 .team_create_form {
 	position: relative;
 	margin: auto;
@@ -342,6 +343,19 @@ footer {
 }
 
 /*共通部品*/
+
+.message_error{
+	width: 500px;
+    height: 30px;
+    line-height: 30px;
+    margin: auto;
+    margin-bottom: 30px;
+    padding-left: 10px;
+    vertical-align: center;
+    background-color: rgb(255 98 98 / 25%);
+    border-radius: 5px;
+}
+
 body {
 	margin: 0px;
 	background: #E5E5E5;
