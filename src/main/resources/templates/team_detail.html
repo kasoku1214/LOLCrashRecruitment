@@ -45,7 +45,7 @@
 		</div>
 		<div class="team_create_row">
 			<label class="column_title">チーム紹介文</label>
-			<span class="detail_team_introduction fs-12" th:text="*{teamIntroduction}"></span>
+			<p class="detail_team_introduction fs-12" th:text="*{teamIntroduction}"></p>
 		</div>
 		<form class="" method="post" th:action="@{/open_team_edit}" th:object="${passwordForm}">
 			<div class="team_create_row">

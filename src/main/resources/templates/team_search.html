@@ -8,8 +8,8 @@
 <body>
 	<div th:replace="/common/header :: header"></div>
 	<br><br>
-	<div class="grid">
-		<div class="team_card" th:each="team, teamStat:${teamList}">
+	<div class="container">
+		<div class="team_card" th:classappend="${teamStat.index % 2 == 0} ? 'card_is_first'" th:each="team, teamStat:${teamList}">
 			<div class="card_title">
 				<a class="card_title_link" th:href="@{/team_detail/__${team.teamId}__}" th:text="${team.teamName}"></a>
 			</div>
@@ -32,7 +32,7 @@
 				<span class="summoner_rank" th:text="${T(com.crecruit.enumclass.Rank).getRankNameByRankCode(summoner.rankCode)}"></span>
 			</div>
 			<div class="team_introduction">
-				<span class="team_introductionContent" th:text="${team.teamIntroduction}"></span>
+				<p class="team_introductionContent" th:text="${team.teamIntroduction}"></p>
 			</div>
 		</div>
 	</div>

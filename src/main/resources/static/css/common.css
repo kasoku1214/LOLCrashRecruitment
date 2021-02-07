@@ -38,29 +38,37 @@ footer {
 	background: #EDEDF4;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 	height: 100px;
-	background: #EDEDF4;
 }
 
 .copylight {
+	display: block;
 	text-align: center;
 	line-height: 100px;
 	font-size: 14px;
+	text-align: center;
 }
 
 /*topページ*/
 .team_card {
-	height: 340px;
+	height: auto;
+	min-height: 230px;
 	width: 315px;
 	background: #eedff9;
 	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
 	border-radius: 23px;
+	margin: 0 50px 20px;
+	float: left;
 }
 
-.grid {
-	display: grid;
-	grid-template-columns: 315px 315px;
-	gap: 100px;
-	justify-content: center;
+.card_is_first {
+	clear: left;
+}
+
+.container {
+	width: 830px;
+	margin-left: auto;
+	margin-right: auto;
+	overflow: auto;
 }
 
 .card_title {
@@ -158,17 +166,27 @@ footer {
 
 .team_introduction {
 	position: relative;
-	top: 20px;
+	height: auto;
+	width: 276px;
 	margin: auto;
 	background: #FFFFFF;
-	height: 106px;
-	width: 276px;
 }
 
 .team_introductionContent {
 	position: relative;
-	top: 10px;
-	left: 10px;
+	width: 256px;
+	min-height: 70px;
+	height: auto;
+	font-size: 12px;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 6;
+	overflow: hidden;
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	word-break: break-all;
+	margin-bottom: 20px;
 }
 
 /*メンバー募集ページ*/
@@ -320,14 +338,19 @@ footer {
 	padding-left: 10px;
 	padding-top: 2px;
 	padding-bottom: 2px;
-	margin-left:10px;
+	margin-left: 10px;
 }
 
-.detail_team_introduction{
+.detail_team_introduction {
 	display: inline-block;
-	height: 200px;
-    width: 390px;
+	height: auto;
+	min-height: 200px;
+	width: 390px;
 	background-color: #ffffff;
+	margin-top: 0px;
+	padding: 10px;
+	word-break: break-all;
+	padding: 10px;
 }
 
 .edit_button {
@@ -343,17 +366,16 @@ footer {
 }
 
 /*共通部品*/
-
-.message_error{
+.message_error {
 	width: 500px;
-    height: 30px;
-    line-height: 30px;
-    margin: auto;
-    margin-bottom: 30px;
-    padding-left: 10px;
-    vertical-align: center;
-    background-color: rgb(255 98 98 / 25%);
-    border-radius: 5px;
+	height: 30px;
+	line-height: 30px;
+	margin: auto;
+	margin-bottom: 30px;
+	padding-left: 10px;
+	vertical-align: center;
+	background-color: rgb(255 98 98/ 25%);
+	border-radius: 5px;
 }
 
 body {
@@ -367,6 +389,10 @@ a {
 
 a:hover {
 	color: #70696b;
+}
+
+p {
+	white-space: pre-wrap;
 }
 
 .h-18 {
