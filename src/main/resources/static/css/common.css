@@ -76,11 +76,15 @@ footer {
 	height: 54px;
 	width: 315px;
 	background: #3D3D42;
+	color: #EDEDF4;
 	border-radius: 23px 23px 0px 0px;
 	font-family: Source Code Pro;
 	font-size: 18px;
 	line-height: 54px;
 	text-align: center;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 .card_title_link {
@@ -91,77 +95,50 @@ footer {
 	position: relative;
 	top: 4px;
 	left: 17px;
-	filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));
 	background: #E6A162;
-	border-radius: 5px;
 	font-family: Source Code Pro;
 	font-size: 12px;
 	color: #000000;
-	display: inline-block;
 	margin-left: 9px;
 	margin-bottom: 6px;
-	padding-right: 10px;
-	padding-left: 10px;
-	padding-top: 2px;
-	padding-bottom: 2px;
-	padding-right: 10px;
 }
 
 .min_rank {
 	position: relative;
 	top: 6px;
 	left: 17px;
-	filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));
-	border-radius: 5px;
 	font-family: Source Code Pro;
 	font-size: 12px;
 	color: #000000;
-	display: inline-block;
 	margin-left: 9px;
 	margin-bottom: 8px;
-	padding-right: 10px;
-	padding-left: 10px;
-	padding-top: 2px;
-	padding-bottom: 2px;
-	padding-right: 10px;
 }
 
 .max_rank {
 	position: relative;
 	top: 6px;
 	left: 17px;
-	filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));
-	border-radius: 5px;
 	font-family: Source Code Pro;
 	font-size: 12px;
 	color: #000000;
-	display: inline-block;
 	margin-left: 9px;
 	margin-bottom: 8px;
-	padding-right: 10px;
-	padding-left: 10px;
-	padding-top: 2px;
-	padding-bottom: 2px;
 }
 
-.summoner {
-	position: relative;
-	top: 7px;
-	text-align: center;
-	margin-top: 3px;
+.summoner_table {
+	margin: auto;
 }
 
-.summoner_role {
-	vertical-align: super;
-	font-family: Source Code Pro;
-	font-size: 6.5px;
-	line-height: 8px;
-	color: #000000;
+.summoner_name {
+	font-size: 14px;
 }
 
 .summoner_rank {
-	position: relative;
-	left: 19px;
+
+}
+
+.summoner_role {
+	background: #E6A162;
 }
 
 .team_introduction {
@@ -183,10 +160,19 @@ footer {
 	-webkit-line-clamp: 6;
 	overflow: hidden;
 	margin: auto;
-	margin-top: 20px;
-	margin-bottom: 20px;
 	word-break: break-all;
-	margin-bottom: 20px;
+}
+
+.updatedAt_block {
+	text-align: right;
+	margin: 5px;
+}
+
+.updatedAt_text {
+	font-size: 12px;
+	color: #70696b;
+	margin-right: 10px;
+	padding: 3px;
 }
 
 /*メンバー募集ページ*/
@@ -307,7 +293,7 @@ footer {
 	font-weight: bold;
 }
 
-.summoner_table {
+.detail_summoner_table {
 	border-spacing: 2px 10px;
 }
 
@@ -378,6 +364,16 @@ footer {
 	border-radius: 5px;
 }
 
+.tag {
+	filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));
+	border-radius: 5px;
+	display: inline-block;
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
 body {
 	margin: 0px;
 	background: #E5E5E5;
@@ -393,6 +389,10 @@ a:hover {
 
 p {
 	white-space: pre-wrap;
+}
+
+.inline {
+	display: inline;
 }
 
 .h-18 {
@@ -411,6 +411,10 @@ p {
 	margin-left: 5px;
 }
 
+.margin-t-10 {
+	margin-top: 10px;
+}
+
 .margin-t-15 {
 	margin-top: 15px;
 }
@@ -421,6 +425,10 @@ p {
 
 .margin-t-25 {
 	margin-top: 25px;
+}
+
+.padding-l-0 {
+	padding-left: 0px;
 }
 
 .fs-12 {

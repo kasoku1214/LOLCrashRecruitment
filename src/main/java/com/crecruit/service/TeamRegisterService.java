@@ -1,5 +1,7 @@
 package com.crecruit.service;
 
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +30,9 @@ public class TeamRegisterService {
 		// チームIDを生成し、teamに設定
 		Integer teamId = teamRepository.getNextSeriesId();
 		team.setTeamId(teamId);
+
+		// teamのupdatedAtに現在時刻を設定
+		team.setUpdatedAt(LocalDateTime.now());
 
 		// 以下メンバーの登録
 		for (Summoner summoner: team.getSummonerList()) {

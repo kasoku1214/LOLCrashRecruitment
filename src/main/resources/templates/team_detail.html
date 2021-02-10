@@ -15,7 +15,7 @@
 			<label class="detail_column_title">チーム名</label>
 			<span class="detail_team_name" th:text="*{teamName}"></span>
 		</div>
-		<table class="margin-t-15 summoner_table">
+		<table class="margin-t-15 detail_summoner_table">
 			<tr th:each="summoner, stat:${team.summonerList}">
 				<td th:if="${stat.index}==0">
 					<label class="detail_column_title">サモナーネーム</label>
@@ -38,7 +38,7 @@
 		<div class="team_create_row">
 			<label class="column_title">募集ロール</label>
 			<span th:if="*{isRecruitedTop==1}" class="margin-l-5 fs-12 va-top">Top</span>
-			<span th:if="*{isRecruitedJG==1}" class="margin-l-5 fs-12/ va-top">JG</span>
+			<span th:if="*{isRecruitedJG==1}" class="margin-l-5 fs-12 va-top">JG</span>
 			<span th:if="*{isRecruitedMid==1}" class="margin-l-5 fs-12 va-top">Mid</span>
 			<span th:if="*{isRecruitedBot==1}" class="margin-l-5 fs-12 va-top">Bot</span>
 			<span th:if="*{isRecruitedSup==1}" class="margin-l-5 fs-12 va-top">Sup</span>

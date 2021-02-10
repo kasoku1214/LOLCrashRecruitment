@@ -1,8 +1,8 @@
 package com.crecruit.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.crecruit.entity.Team;
@@ -20,9 +20,9 @@ public class TeamSearchService {
 	 * 全チーム検索メソッド
 	 * @return 全チームリスト
 	 */
-	public List<Team> searchAllTeam() {
+	public Page<Team> searchAllTeam(Pageable pageable) {
 		// 全チームを検索する
-		return teamRepository.findAllTeam();
+		return teamRepository.findAllTeam(pageable);
 	}
 
 	/**
@@ -30,7 +30,7 @@ public class TeamSearchService {
 	 * @param teamSearchForm チーム検索条件
 	 * @return チーム検索結果リスト
 	 */
-	public List<Team> searchTeam(TeamSearchForm teamSearchForm) {
+	public Page<Team> searchTeam(TeamSearchForm teamSearchForm, Pageable pageable) {
 
 		// 検索用isRecruitedRole
 		Integer isRecruitedTop = 99;
@@ -66,17 +66,17 @@ public class TeamSearchService {
 		if (teamSearchForm.getRankCode() != 0 && teamSearchForm.getRoleCode() != 0) {
 			// ランクとロールがどちらも入力されている場合
 			return teamRepository.findByRoleCodeAndRankCode(isRecruitedTop, isRecruitedJG, isRecruitedMid,
-					isRecruitedBot, isRecruitedSup, teamSearchForm.getRankCode());
+					isRecruitedBot, isRecruitedSup, teamSearchForm.getRankCode(), pageable);
 		} else if (teamSearchForm.getRankCode() == 0 && teamSearchForm.getRoleCode() != 0) {
 			// ロールのみが入力されている場合
 			return teamRepository.findByRoleCode(isRecruitedTop, isRecruitedJG, isRecruitedMid,
-					isRecruitedBot, isRecruitedSup);
+					isRecruitedBot, isRecruitedSup, pageable);
 		} else if (teamSearchForm.getRoleCode() == 0 && teamSearchForm.getRankCode() != 0) {
 			// ランクのみが入力されている場合
-			return teamRepository.findByRankCode(teamSearchForm.getRankCode());
+			return teamRepository.findByRankCode(teamSearchForm.getRankCode(), pageable);
 		}
 
 		// ランクとロールがどちらも入力されていない時は全件検索
-		return teamRepository.findAllTeam();
+		return teamRepository.findAllTeam(pageable);
 	}
 }

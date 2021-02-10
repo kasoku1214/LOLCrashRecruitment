@@ -42,6 +42,7 @@ public class TeamDetailController {
 	@RequestMapping(value = "/team_detail/{teamId}")
 	public ModelAndView openTeamDetailPage(ModelAndView modelAndView, @PathVariable("teamId") Integer teamId) {
 
+		// teamIDからチーム情報を検索
 		Team team = teamDetailService.findByTeamId(teamId);
 
 		// PasswordFormに値を格納

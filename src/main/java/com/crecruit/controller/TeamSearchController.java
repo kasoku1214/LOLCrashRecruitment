@@ -1,8 +1,7 @@
 package com.crecruit.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,22 +20,24 @@ public class TeamSearchController {
 	private TeamSearchService teamSearchService;
 
 	/**
-     * 検索用Formオブジェクトを初期化して返却する
-     * @ruturn 検索用Formオブジェクト
-     */
-    @ModelAttribute("teamSearchForm")
-    public TeamSearchForm createTeamSearchForm(){
-        TeamSearchForm teamSearchForm = new TeamSearchForm();
-        return teamSearchForm;
-    }
+	 * 検索用Formオブジェクトを初期化して返却する
+	 * @ruturn 検索用Formオブジェクト
+	 */
+	@ModelAttribute("teamSearchForm")
+	public TeamSearchForm createTeamSearchForm() {
+		TeamSearchForm teamSearchForm = new TeamSearchForm();
+		return teamSearchForm;
+	}
 
 	@RequestMapping(value = "/")
 	public ModelAndView searchAllTeam(ModelAndView modelAndView, Pageable pageable) {
 		// 全チームの検索
-		List<Team> teamList = teamSearchService.searchAllTeam();
+		Page<Team> teamListPage = teamSearchService.searchAllTeam(pageable);
 
 		// htmlに値を渡す
-		modelAndView.addObject("teamList", teamList);
+		modelAndView.addObject("page", teamListPage);
+		modelAndView.addObject("teamList", teamListPage.getContent());
+		modelAndView.addObject("url", "/");
 
 		// 遷移先：チーム検索ページ
 		modelAndView.setViewName("team_search");
@@ -48,10 +49,13 @@ public class TeamSearchController {
 	public ModelAndView searchTeam(ModelAndView modelAndView, Pageable pageable, TeamSearchForm teamSearchForm) {
 
 		// 全チームの検索
-		List<Team> teamList = teamSearchService.searchTeam(teamSearchForm);
+		Page<Team> teamListPage = teamSearchService.searchTeam(teamSearchForm, pageable);
 
 		// htmlに値を渡す
-		modelAndView.addObject("teamList", teamList);
+		modelAndView.addObject("page", teamListPage);
+		modelAndView.addObject("teamList", teamListPage.getContent());
+		modelAndView.addObject("url",
+				"/team_search?roleCode=" + teamSearchForm.getRoleCode() + "&rankCode=" + teamSearchForm.getRankCode());
 
 		// 遷移先：チーム検索ページ
 		modelAndView.setViewName("team_search");

@@ -1,5 +1,6 @@
 package com.crecruit.entity;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -53,6 +55,10 @@ public class Team{
 	@Column(name = "password")
 	private String password;
 
+	@Column(name = "updated_at")
+	private  LocalDateTime updatedAt;
+
+	@OrderBy(value = "summoner_id asc")
 	@OneToMany(cascade = {CascadeType.ALL})
     @JoinColumn(name = "team_id")
 	private List<Summoner> summonerList;

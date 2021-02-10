@@ -1,7 +1,7 @@
 package com.crecruit.repository;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -18,30 +18,31 @@ public interface TeamRepository extends JpaRepository<Team, Integer> {
 
 	// 全チームを検索する
 	@Query(value = "SELECT * FROM team ORDER BY updated_at DESC", nativeQuery = true)
-	public List<Team> findAllTeam();
+	public Page<Team> findAllTeam(Pageable pageable);
 
 	// 検索条件(rankCode,roleCode)からチームを検索する
 	@Query(value = "SELECT * FROM team WHERE (team.is_recruited_top = :isRecruitedTop OR "
 			+ "team.is_recruited_jg = :isRecruitedJG OR team.is_recruited_mid = :isRecruitedMid OR "
 			+ "team.is_recruited_bot = :isRecruitedBot OR team.is_recruited_sup = :isRecruitedSup) AND "
 			+ "team.max_rank >= :rankCode AND team.min_rank <= :rankCode ORDER BY updated_at DESC", nativeQuery = true)
-	public List<Team> findByRoleCodeAndRankCode(@Param("isRecruitedTop") Integer isRecruitedTop,
+	public Page<Team> findByRoleCodeAndRankCode(@Param("isRecruitedTop") Integer isRecruitedTop,
 			@Param("isRecruitedJG") Integer isRecruitedJG, @Param("isRecruitedMid") Integer isRecruitedMid,
 			@Param("isRecruitedBot") Integer isRecruitedBot, @Param("isRecruitedSup") Integer isRecruitedSup,
-			@Param("rankCode") Integer rankCode);
+			@Param("rankCode") Integer rankCode, Pageable pageable);
 
 	// 検索条件(roleCode)からチームを検索する
 	@Query(value = "SELECT * FROM team WHERE (team.is_recruited_top = :isRecruitedTop OR "
 			+ "team.is_recruited_jg = :isRecruitedJG OR team.is_recruited_mid = :isRecruitedMid OR "
 			+ "team.is_recruited_bot = :isRecruitedBot OR team.is_recruited_sup = :isRecruitedSup) "
 			+ "ORDER BY updated_at DESC", nativeQuery = true)
-	public List<Team> findByRoleCode(@Param("isRecruitedTop") Integer isRecruitedTop,
+	public Page<Team> findByRoleCode(@Param("isRecruitedTop") Integer isRecruitedTop,
 			@Param("isRecruitedJG") Integer isRecruitedJG, @Param("isRecruitedMid") Integer isRecruitedMid,
-			@Param("isRecruitedBot") Integer isRecruitedBot, @Param("isRecruitedSup") Integer isRecruitedSup);
+			@Param("isRecruitedBot") Integer isRecruitedBot, @Param("isRecruitedSup") Integer isRecruitedSup,
+			Pageable pageable);
 
 	// 検索条件(rankCode)からチームを検索する
 	@Query(value = "SELECT * FROM team WHERE team.max_rank >= :rankCode AND team.min_rank <= :rankCode "
 			+ "ORDER BY updated_at DESC", nativeQuery = true)
-	public List<Team> findByRankCode(@Param("rankCode") Integer rankCode);
+	public Page<Team> findByRankCode(@Param("rankCode") Integer rankCode, Pageable pageable);
 
 }
