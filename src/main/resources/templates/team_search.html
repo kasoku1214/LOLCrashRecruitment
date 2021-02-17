@@ -13,25 +13,38 @@
 			<div class="card_title">
 				<a class="card_title_link" th:href="@{/team_detail/__${team.teamId}__}" th:text="${team.teamName}"></a>
 			</div>
-			<div class="min_rank tag" th:id="'minRank' + ${teamStat.index}"
-				th:text="${T(com.crecruit.enumclass.Rank).getRankNameByRankCode(team.getMinRank())}"></div>
-			<div class="max_rank tag" th:id="'maxRank' + ${teamStat.index}"
-				th:text="${T(com.crecruit.enumclass.Rank).getRankNameByRankCode(team.getMaxRank())}"></div><br>
-			<div class="recruited_role tag" th:if="${team.getIsRecruitedTop() == 1}"
-			th:text="${T(com.crecruit.enumclass.Role).TOP.getRoleName()}"></div>
-			<div class="recruited_role tag" th:if="${team.getIsRecruitedJG() == 1}"
-			th:text="${T(com.crecruit.enumclass.Role).JG.getRoleName()}"></div>
-			<div class="recruited_role tag" th:if="${team.getIsRecruitedMid() == 1}"
-			th:text="${T(com.crecruit.enumclass.Role).MID.getRoleName()}"></div>
-			<div class="recruited_role tag" th:if="${team.getIsRecruitedBot() == 1}"
-			th:text="${T(com.crecruit.enumclass.Role).BOT.getRoleName()}"></div>
-			<div class="recruited_role tag" th:if="${team.getIsRecruitedSup() == 1}"
-			th:text="${T(com.crecruit.enumclass.Role).SUP.getRoleName()}"></div>
+			<div class="recruited_condition">
+				<span class="recruited_title">募集対象</span>
+				<div class="rank_row">
+					<div class="min_rank tag" th:id="'minRank' + ${teamStat.index}"
+						th:text="${T(com.crecruit.enumclass.Rank).getRankNameByRankCode(team.getMinRank())}"></div>
+					<span class="recruited_rank_from">〜</span>
+					<div class="max_rank tag" th:id="'maxRank' + ${teamStat.index}"
+						th:text="${T(com.crecruit.enumclass.Rank).getRankNameByRankCode(team.getMaxRank())}"></div>
+				</div>
+				<div class="role_row">
+					<div class="recruited_role tag" th:if="${team.getIsRecruitedTop() == 1}"
+					th:text="${T(com.crecruit.enumclass.Role).TOP.getRoleName()}"></div>
+					<div class="recruited_role tag" th:if="${team.getIsRecruitedJG() == 1}"
+					th:text="${T(com.crecruit.enumclass.Role).JG.getRoleName()}"></div>
+					<div class="recruited_role tag" th:if="${team.getIsRecruitedMid() == 1}"
+					th:text="${T(com.crecruit.enumclass.Role).MID.getRoleName()}"></div>
+					<div class="recruited_role tag" th:if="${team.getIsRecruitedBot() == 1}"
+					th:text="${T(com.crecruit.enumclass.Role).BOT.getRoleName()}"></div>
+					<div class="recruited_role tag" th:if="${team.getIsRecruitedSup() == 1}"
+					th:text="${T(com.crecruit.enumclass.Role).SUP.getRoleName()}"></div>
+				</div>
+			</div>
 			<table class="summoner_table margin-t-10">
-				<tr th:each="summoner:${team.summonerList}">
-					<td class="summoner_name" th:text="${summoner.summonerName}"></td>
-					<td class="summoner_role tag" th:text="${T(com.crecruit.enumclass.Role).getRoleNameByRoleCode(summoner.roleCode1)}"></td>
-					<td class="summoner_rank tag" th:text="${T(com.crecruit.enumclass.Rank).getRankNameByRankCode(summoner.rankCode)}"></td>
+				<tr th:each="summoner, summonerStat:${team.summonerList}">
+					<td>
+						<span class="summoner_name" th:text="${summoner.summonerName}"></span>
+					</td>
+					<td class="summoner_role tag"
+					th:text="${T(com.crecruit.enumclass.Role).getRoleNameByRoleCode(summoner.roleCode1)}"></td>
+					<td class="summoner_rank tag" th:id="'summonerRank' + ${teamStat.index} + 'and' + ${summonerStat.index}"
+					th:text="${T(com.crecruit.enumclass.Rank).getRankNameByRankCode(summoner.rankCode)}"></td>
+				</tr>
 			</table>
 			<div class="team_introduction margin-t-10">
 				<p class="team_introductionContent" th:text="${team.teamIntroduction}"></p>

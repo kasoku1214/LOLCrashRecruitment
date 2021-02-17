@@ -1,7 +1,7 @@
 window.onload = function() {
 	// ランクタグに色をつける
+	// minRankタグに色をつける
 	for (i = 0; true; i++) {
-		// minRankタグに色をつける
 		var idName = 'minRank' + i;
 		var minRank = document.getElementById(idName);
 
@@ -25,6 +25,28 @@ window.onload = function() {
 		changeRankColor(maxRank);
 	}
 
+	// summonerRankタグに色をつける
+	var summonerRankIsEnd = false;
+	for (i = 0; true; i++) {
+		for (j = 0; true; j++) {
+			var idName = 'summonerRank' + i + 'and' + j;
+			summonerRank = document.getElementById(idName);
+
+			if (summonerRank == undefined) {
+				// jが0の時にsummonerRankがundefinedなら次のチームは存在しない事になる。（サモナーが0のチームがあるとこれは機能しない）
+				if (j == 0) {
+					summonerRankIsEnd = true;
+				}
+				break;
+			}
+
+			changeRankColor(summonerRank);
+		}
+
+		if (summonerRankIsEnd) {
+			break;
+		}
+	}
 }
 
 //

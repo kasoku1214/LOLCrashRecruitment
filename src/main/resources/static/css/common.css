@@ -53,7 +53,7 @@ footer {
 	height: auto;
 	min-height: 230px;
 	width: 315px;
-	background: #eedff9;
+	background: #f3e9e9;
 	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
 	border-radius: 23px;
 	margin: 0 50px 20px;
@@ -91,38 +91,51 @@ footer {
 	color: #EDEDF4;
 }
 
-.recruited_role {
-	position: relative;
-	top: 4px;
-	left: 17px;
-	background: #E6A162;
-	font-family: Source Code Pro;
-	font-size: 12px;
-	color: #000000;
+.recruited_condition {
+	background-color: #e4d6d6;
+	padding-bottom: 10px;
+}
+
+.recruited_title {
+	font-size: 10px;
 	margin-left: 9px;
-	margin-bottom: 6px;
+	text-decoration: underline;
+}
+
+.rank_row {
+
 }
 
 .min_rank {
 	position: relative;
-	top: 6px;
-	left: 17px;
 	font-family: Source Code Pro;
 	font-size: 12px;
 	color: #000000;
-	margin-left: 9px;
-	margin-bottom: 8px;
+	margin-left: 13px;
+}
+
+.recruited_rank_from {
+	font-size: 14px;
 }
 
 .max_rank {
 	position: relative;
-	top: 6px;
-	left: 17px;
 	font-family: Source Code Pro;
 	font-size: 12px;
 	color: #000000;
-	margin-left: 9px;
-	margin-bottom: 8px;
+}
+
+.role_row {
+	margin-top: 6px;
+	margin-left: 13px;
+}
+
+.recruited_role {
+	position: relative;
+	background: #E6A162;
+	font-family: Source Code Pro;
+	font-size: 12px;
+	color: #000000;
 }
 
 .summoner_table {
@@ -130,15 +143,25 @@ footer {
 }
 
 .summoner_name {
+	display: block;
+	width: 140px;
 	font-size: 14px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	padding-top: 2px;
 }
 
 .summoner_rank {
-
+	font-size: 12px;
+	margin-left: 5px;
 }
 
 .summoner_role {
+	width: 22px;
+	font-size: 12px;
 	background: #E6A162;
+	font-size: 12px;
 }
 
 .team_introduction {
@@ -318,7 +341,6 @@ footer {
 	filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));
 	border-radius: 5px;
 	font-size: 12px;
-	color: #EDEDF4;
 	display: inline-block;
 	padding-right: 10px;
 	padding-left: 10px;
