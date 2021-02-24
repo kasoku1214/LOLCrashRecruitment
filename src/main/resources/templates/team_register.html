@@ -3,16 +3,17 @@
 <head>
 <link rel="stylesheet" href="/css/common.css">
 <meta charset="UTF-8">
-<title>Crashメンバー募集</title>
+<title>Clashメンバー募集</title>
 </head>
 <body>
 	<div th:replace="/common/header :: header"></div>
 	<br><br>
+	<div th:if="${messageType.equals('success')}" class="message_error" th:text="*{textContent}" ></div>
 	<form class="team_create_form" th:action="@{team_register}" method="post" th:object="${team}" onsubmit="return alertRegistration();">
 		<div class="team_create_form_title">メンバー募集</div>
 		<div class="team_create_row">
 			<label class="column_title">チーム名</label>
-			<input class="team_name_input" type="text" th:field="*{teamName}" required>
+			<input class="team_name_input" type="text" th:field="*{teamName}" maxlength="40" required>
 		</div>
 		<div th:each="i : ${#numbers.sequence(0,4)}">
 			<div th:if="${i}==0"  class="team_create_row"></div>
@@ -20,9 +21,9 @@
 			<label th:if="${i}==0" class="column_title">サモナーネーム</label>
 			<label th:if="${i}!=0" class="column_title"></label>
 			<input th:if="${i}==0" class="summoner_name_input" type="text"
-			th:field="*{summonerList[__${i}__].summonerName}" required>
+			th:field="*{summonerList[__${i}__].summonerName}" maxlength="40" required>
 			<input th:if="${i}!=0" class="summoner_name_input" type="text"
-			th:field="*{summonerList[__${i}__].summonerName}">
+			th:field="*{summonerList[__${i}__].summonerName}" maxlength="40">
 			<select class="role_pulldown" th:field="*{summonerList[__${i}__].roleCode1}">
 					<option
 						th:each="role : ${T(com.crecruit.enumclass.Role).values()}"
@@ -36,16 +37,18 @@
 		</div>
 		<div class="team_create_row">
 			<label class="column_title">募集ランク帯</label>
-			<select class="va-top" th:field="*{maxRank}">
-				<option
-					th:each="rank : ${T(com.crecruit.enumclass.Rank).values()}"
-					th:value="${rank.getRankCode()}" th:text="${rank.rankName}">最大ランク</option>
-			</select>
-			<span class="margin-l-5 fs-12 va-top">から</span>
-			<select class="margin-l-5 va-top" th:field="*{minRank}">
+			<select class="va-top" th:field="*{minRank}">
+				<option hidden="hidden" value="0">最低ランク</option>
 				<option
 					th:each="rank : ${T(com.crecruit.enumclass.Rank).values()}"
 					th:value="${rank.getRankCode()}" th:text="${rank.rankName}">最低ランク</option>
+			</select>
+			<span class="margin-l-5 fs-12 va-top">から</span>
+			<select class="va-top margin-l-5" th:field="*{maxRank}">
+				<option hidden="hidden" value="0">最大ランク</option>
+				<option
+					th:each="rank : ${T(com.crecruit.enumclass.Rank).values()}"
+					th:value="${rank.getRankCode()}" th:text="${rank.rankName}">最大ランク</option>
 			</select>
 			<span class="margin-l-5 fs-12 va-top">まで</span>
 		</div>
@@ -69,11 +72,11 @@
 		</div>
 		<div class="team_create_row">
 			<label class="column_title">チーム紹介文</label>
-			<textarea class="team_intro_textarea" th:field="*{teamIntroduction}"></textarea>
+			<textarea class="team_intro_textarea" th:field="*{teamIntroduction}" maxlength="1000"></textarea>
 		</div>
 		<div class="team_create_row">
 			<label class="column_title">パスワード</label>
-			<input class="password_input" type="password" th:field="*{password}">
+			<input class="password_input" type="password" th:field="*{password}" maxlength="30" minlength="8" required>
 		</div>
 		<div class="column_caution red">※チーム情報の修正や更新にはパスワードが必要になります</div>
 		<br>

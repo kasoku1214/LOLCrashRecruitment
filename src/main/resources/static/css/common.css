@@ -311,7 +311,8 @@ footer {
 }
 
 .detail_team_name {
-	width: 250px;
+	display: inline-flex;
+	width: 380px;
 	font-size: 20px;
 	font-weight: bold;
 }
@@ -411,6 +412,16 @@ a:hover {
 
 p {
 	white-space: pre-wrap;
+}
+
+button:hover {
+  background-color: #a9a9a9;
+}
+
+button,
+button::before,
+button::after {
+  transition: all .3s;
 }
 
 .inline {

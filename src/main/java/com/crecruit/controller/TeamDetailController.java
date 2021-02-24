@@ -11,6 +11,7 @@ import com.crecruit.entity.Team;
 import com.crecruit.form.PasswordForm;
 import com.crecruit.form.TeamSearchForm;
 import com.crecruit.service.TeamDetailService;
+import com.crecruit.utility.MessageText;
 
 @Controller
 public class TeamDetailController {
@@ -33,10 +34,10 @@ public class TeamDetailController {
 	 * エラーメッセージ表示判定オブジェクトを初期化して返却する
 	 * @ruturn エラーメッセージ表示判定オブジェクト
 	 */
-	@ModelAttribute("isError")
-	public boolean createIsError() {
-		boolean isError = false;
-		return isError;
+	@ModelAttribute("messageText")
+	public MessageText createMessageText() {
+		MessageText messageText = new MessageText();
+		return messageText;
 	}
 
 	@RequestMapping(value = "/team_detail/{teamId}")
