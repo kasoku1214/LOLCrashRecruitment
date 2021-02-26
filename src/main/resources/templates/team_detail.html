@@ -8,7 +8,8 @@
 <body>
 	<div th:replace="/common/header :: header"></div>
 	<br><br>
-	<div th:if="${isError}" class="message_error">パスワードが違います。</div>
+	<div th:if="${messageText.messageType.equals('error')}" class="message_error" th:text="*{messageText.textContent}" ></div>
+	<div th:if="${messageText.messageType.equals('success')}" class="message_success" th:text="*{messageText.textContent}" ></div>
 	<div class="team_detail_form" th:object="${team}">
 		<div class="team_detail_form_title">チーム情報</div>
 		<div class="margin-t-25">

@@ -8,6 +8,8 @@
 <body>
 	<div th:replace="/common/header :: header"></div>
 	<br><br>
+	<div th:if="${messageText.messageType.equals('error')}" class="message_error" th:text="*{messageText.textContent}" ></div>
+	<div th:if="${messageText.messageType.equals('success')}" class="message_success" th:text="*{messageText.textContent}" ></div>
 	<div class="container">
 		<div class="team_card" th:classappend="${teamStat.index % 2 == 0} ? 'card_is_first'" th:each="team, teamStat:${teamList}">
 			<div class="card_title">

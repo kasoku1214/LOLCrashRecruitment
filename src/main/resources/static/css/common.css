@@ -387,6 +387,18 @@ footer {
 	border-radius: 5px;
 }
 
+.message_success {
+	width: 500px;
+	height: 30px;
+	line-height: 30px;
+	margin: auto;
+	margin-bottom: 30px;
+	padding-left: 10px;
+	vertical-align: center;
+	background-color: rgb(96 236 139/ 25%);
+	border-radius: 5px;
+}
+
 .tag {
 	filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));
 	border-radius: 5px;
@@ -415,13 +427,11 @@ p {
 }
 
 button:hover {
-  background-color: #a9a9a9;
+	background-color: #a9a9a9;
 }
 
-button,
-button::before,
-button::after {
-  transition: all .3s;
+button, button::before, button::after {
+	transition: all .3s;
 }
 
 .inline {

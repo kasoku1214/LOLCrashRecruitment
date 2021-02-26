@@ -8,11 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.crecruit.entity.Summoner;
 import com.crecruit.entity.Team;
 import com.crecruit.form.TeamSearchForm;
 import com.crecruit.service.TeamRegisterService;
+import com.crecruit.utility.MessageText;
 
 @Controller
 public class TeamRegisterController {
@@ -44,6 +46,16 @@ public class TeamRegisterController {
         return team;
     }
 
+    /**
+	 * エラーメッセージ表示判定オブジェクトを初期化して返却する
+	 * @ruturn エラーメッセージ表示判定オブジェクト
+	 */
+	@ModelAttribute("messageText")
+	public MessageText createMessageText() {
+		MessageText messageText = new MessageText();
+		return messageText;
+	}
+
 	@RequestMapping(value = "/open_team_register")
 	public ModelAndView openRegisterTeamPage(ModelAndView modelAndView) {
 
@@ -54,7 +66,7 @@ public class TeamRegisterController {
 	}
 
 	@RequestMapping(value = "/team_register")
-	public String registerTeam(ModelAndView modelAndView, Team team) {
+	public String registerTeam(ModelAndView modelAndView, Team team, RedirectAttributes redirectAttributes) {
 
 		// 登録するサモナーリスト
 		List<Summoner> summonerList =new ArrayList<Summoner>();
@@ -71,6 +83,9 @@ public class TeamRegisterController {
 
 		// チームとメンバーを登録
 		teamRegisterService.createTeam(team);
+
+		// 募集完了メッセージ格納（リダイレクト先に値を渡している）
+		redirectAttributes.addFlashAttribute("messageText", new MessageText("募集が完了しました。", "success"));
 
 		return "redirect:/";
 	}

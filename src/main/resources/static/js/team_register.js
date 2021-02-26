@@ -1,6 +1,7 @@
 
 function alertRegistration() {
 
+	// 募集ランクの入力チェック
 	if (checkMaxMinRank()) {
 
 	} else {
@@ -8,7 +9,9 @@ function alertRegistration() {
 		return false;
 	}
 
+	// 募集確認ポップアップ
 	if (window.confirm("この内容で募集しますか？")) {
+		// 募集前処理
 		return prepareRegister();
 
 		return true;
@@ -26,6 +29,7 @@ function prepareRegister() {
 	var teamName = document.getElementsByClassName("team_name_input");
 	teamName[0].value = teamName[0].value.trim();
 
+	// チーム名が空になっていないか判定
 	if (teamName[0].value === "") {
 		window.alert("チーム名を入力してください。");
 		return false;
@@ -39,13 +43,24 @@ function prepareRegister() {
 		summonerName.value = summonerName.value.trim();
 	});
 
+	// 全てのサモナー名が空になっていないか判定
+	var summonerNullFlag = summonerNameArray.every(summonerName => {
+		return summonerName.value == "";
+	});
+
+	// 全てのサモナー名が空なら遷移させない
+	if (summonerNullFlag) {
+		window.alert("サモナー名を入力してください。");
+		return false;
+	}
+
 	// 紹介文の前後空白を削除
 	var teamIntroduction = document.getElementsByClassName("team_intro_textarea");
 	teamIntroduction[0].value = teamIntroduction[0].value.trim();
 }
 
 /*
- * 最大ランク、最小ランクの生合成チェック
+ * 最大ランク、最小ランクの整合性チェック
  */
 function checkMaxMinRank(){
 	var maxRank = document.getElementById("maxRank").value;

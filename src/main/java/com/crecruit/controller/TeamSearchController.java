@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.crecruit.entity.Team;
 import com.crecruit.form.TeamSearchForm;
 import com.crecruit.service.TeamSearchService;
+import com.crecruit.utility.MessageText;
 
 @Controller
 public class TeamSearchController {
@@ -27,6 +28,16 @@ public class TeamSearchController {
 	public TeamSearchForm createTeamSearchForm() {
 		TeamSearchForm teamSearchForm = new TeamSearchForm();
 		return teamSearchForm;
+	}
+
+	/**
+	 * エラーメッセージ表示判定オブジェクトを初期化して返却する
+	 * @ruturn エラーメッセージ表示判定オブジェクト
+	 */
+	@ModelAttribute("messageText")
+	public MessageText createMessageText() {
+		MessageText messageText = new MessageText();
+		return messageText;
 	}
 
 	@RequestMapping(value = "/")
