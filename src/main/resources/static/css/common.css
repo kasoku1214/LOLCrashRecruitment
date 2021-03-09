@@ -32,20 +32,40 @@ header {
 	margin-bottom: 10px;
 }
 
+.team_name_input_for_search {
+	display: block;
+	width: 172px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 /*フッター*/
 footer {
 	margin-top: 50px;
 	background: #EDEDF4;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-	height: 100px;
+	height: auto;
+}
+
+.footer_menu {
+	padding-top: 20px;
+	margin-left: 85px;
+	font-size: 13px;
+}
+
+.about_site_link {
+	color: blue;
 }
 
 .copylight {
 	display: block;
 	text-align: center;
-	line-height: 100px;
+	line-height: 50px;
 	font-size: 14px;
-	text-align: center;
+	border-top: dotted 2px #3D3D42;
+	margin-top: 20px;
+	margin-left: 100px;
+	margin-right: 100px;
 }
 
 /*topページ*/
@@ -312,6 +332,7 @@ footer {
 
 .detail_team_name {
 	display: inline-flex;
+	overflow-wrap: anywhere;
 	width: 380px;
 	font-size: 20px;
 	font-weight: bold;
@@ -322,6 +343,7 @@ footer {
 }
 
 .detail_summoner_name {
+	overflow-wrap: anywhere;
 	width: 220px;
 }
 
@@ -347,7 +369,6 @@ footer {
 	padding-left: 10px;
 	padding-top: 2px;
 	padding-bottom: 2px;
-	margin-left: 10px;
 }
 
 .detail_team_introduction {
@@ -362,6 +383,12 @@ footer {
 	padding: 10px;
 }
 
+.edit_button_area {
+	padding-top: 65px;
+	padding-bottom: 40px;
+	margin-left: 430px;
+}
+
 .edit_button {
 	background: #ffd700;
 	border-radius: 9px;
@@ -369,15 +396,62 @@ footer {
 	filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));
 	width: 80px;
 	height: 30px;
-	margin-top: 65px;
-	margin-left: 460px;
-	margin-bottom: 40px;
+}
+
+.delete_button {
+	background: #f18383;
+	border-radius: 9px;
+	border: none;
+	filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));
+	width: 80px;
+	height: 30px;
+	margin-left: 10px;
+}
+
+/*このサイトについてページ*/
+.about_site_form {
+	position: relative;
+	margin: auto;
+	width: 640px;
+	height: auto;
+	background: #EDEDF4;
+	border-radius: 11px;
+}
+
+.about_site_title {
+	height: 40px;
+	background: #3D3D42;
+	border-radius: 23px 23px 0px 0px;
+	font-size: 24px;
+	color: #EDEDF4;
+	text-align: center;
+	line-height: 40px;
+}
+
+/*エラーページ*/
+.error_form {
+	position: relative;
+	margin: auto;
+	width: 640px;
+	height: 650px;
+	background: #EDEDF4;
+	border-radius: 11px;
+}
+
+.error_title {
+	height: 40px;
+	background: #3D3D42;
+	border-radius: 23px 23px 0px 0px;
+	font-size: 24px;
+	color: #EDEDF4;
+	text-align: center;
+	line-height: 40px;
 }
 
 /*共通部品*/
 .message_error {
 	width: 500px;
-	height: 30px;
+	height: auto;
 	line-height: 30px;
 	margin: auto;
 	margin-bottom: 30px;
@@ -389,7 +463,7 @@ footer {
 
 .message_success {
 	width: 500px;
-	height: 30px;
+	height: auto;
 	line-height: 30px;
 	margin: auto;
 	margin-bottom: 30px;
@@ -415,6 +489,7 @@ body {
 }
 
 a {
+	color: blue;
 	text-decoration: none;
 }
 
@@ -431,6 +506,15 @@ button:hover {
 }
 
 button, button::before, button::after {
+	transition: all .3s;
+}
+
+/*ボタンホバーをほかにも適用できるように一般化*/
+.button_hover:hover {
+	background-color: #a9a9a9;
+}
+
+.button_hover, .button_hover::before, .button_hover::after {
 	transition: all .3s;
 }
 
@@ -454,6 +538,18 @@ button, button::before, button::after {
 	margin-left: 5px;
 }
 
+.margin-l-10 {
+	margin-left: 10px;
+}
+
+.margin-l-20 {
+	margin-left: 20px;
+}
+
+.margin-r-20 {
+	margin-right: 20px
+}
+
 .margin-t-10 {
 	margin-top: 10px;
 }
@@ -470,12 +566,24 @@ button, button::before, button::after {
 	margin-top: 25px;
 }
 
+.margin-b-25 {
+	margin-bottom: 25px;
+}
+
 .padding-l-0 {
 	padding-left: 0px;
 }
 
+.padding-b-25 {
+	padding-bottom: 25px;
+}
+
 .fs-12 {
 	font-size: 12px;
+}
+
+.fs-14 {
+	font-size: 14px;
 }
 
 .center {

@@ -12,7 +12,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.crecruit.entity.Summoner;
 import com.crecruit.entity.Team;
-import com.crecruit.form.TeamSearchForm;
 import com.crecruit.service.TeamRegisterService;
 import com.crecruit.utility.MessageText;
 
@@ -24,16 +23,6 @@ public class TeamRegisterController {
 
 	@Autowired
 	TeamSearchController teamSearchController;
-
-	/**
-     * 検索用Formオブジェクトを初期化して返却する
-     * @return 検索用Formオブジェクト
-     */
-    @ModelAttribute("teamSearchForm")
-    public TeamSearchForm createTeamSearchForm(){
-        TeamSearchForm teamSearchForm = new TeamSearchForm();
-        return teamSearchForm;
-    }
 
 	/**
      * 登録用Teamオブジェクトを初期化して返却する

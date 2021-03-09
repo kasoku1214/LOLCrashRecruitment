@@ -62,8 +62,13 @@ public class TeamSearchService {
 			break;
 		}
 
-		// 検索条件のランクとロールの入力状況を判定
-		if (teamSearchForm.getRankCode() != 0 && teamSearchForm.getRoleCode() != 0) {
+		// 検索条件のランクとロール、チーム名の入力状況を判定
+
+		if (!teamSearchForm.getTeamName().equals("")) {
+			// チーム名が入力されている場合
+			// この場合はチーム名という条件のみから部分一致検索
+			return teamRepository.findByTeamNameContainingIgnoreCaseOrderByUpdatedAtDesc(teamSearchForm.getTeamName(), pageable);
+		} else if (teamSearchForm.getRankCode() != 0 && teamSearchForm.getRoleCode() != 0) {
 			// ランクとロールがどちらも入力されている場合
 			return teamRepository.findByRoleCodeAndRankCode(isRecruitedTop, isRecruitedJG, isRecruitedMid,
 					isRecruitedBot, isRecruitedSup, teamSearchForm.getRankCode(), pageable);

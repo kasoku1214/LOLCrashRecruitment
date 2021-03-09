@@ -18,7 +18,6 @@ function alertRegistration() {
 	} else {
 		return false;
 	}
-
 }
 
 /*

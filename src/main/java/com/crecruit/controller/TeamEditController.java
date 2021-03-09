@@ -13,7 +13,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.crecruit.entity.Summoner;
 import com.crecruit.entity.Team;
 import com.crecruit.form.PasswordForm;
-import com.crecruit.form.TeamSearchForm;
 import com.crecruit.service.TeamEditService;
 import com.crecruit.utility.MessageText;
 
@@ -25,16 +24,6 @@ public class TeamEditController {
 	private TeamEditService teamEditService;
 
 	/**
-	 * 検索用Formオブジェクトを初期化して返却する
-	 * @ruturn 検索用Formオブジェクト
-	 */
-	@ModelAttribute("teamSearchForm")
-	public TeamSearchForm createTeamSearchForm() {
-		TeamSearchForm teamSearchForm = new TeamSearchForm();
-		return teamSearchForm;
-	}
-
-	/**
 	 * エラーメッセージ表示判定オブジェクトを初期化して返却する
 	 * @ruturn エラーメッセージ表示判定オブジェクト
 	 */
@@ -44,7 +33,10 @@ public class TeamEditController {
 		return messageText;
 	}
 
-	@RequestMapping(value = "/open_team_edit")
+	/*
+	 * 編集ページを開くメソッド
+	 */
+	@RequestMapping(value = "/open_team_edit", params = "update")
 	public ModelAndView openTeamEditPage(ModelAndView modelAndView, PasswordForm passwordForm) {
 
 		// teamIDからチームを取得
@@ -75,10 +67,48 @@ public class TeamEditController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/team_edit")
-	public String editTeam(ModelAndView modelAndView, Team team,  RedirectAttributes redirectAttributes) {
+	/*
+	 * チームを削除し、トップページに遷移するメソッド
+	 */
+	@RequestMapping(value = "/open_team_edit", params = "delete")
+	public ModelAndView deleteTeam(ModelAndView modelAndView, PasswordForm passwordForm,
+			RedirectAttributes redirectAttributes) {
 
-		List<Summoner> summonerList =new ArrayList<Summoner>();
+		// teamIDからチームを取得
+		Team team = teamEditService.findByTeamId(passwordForm.getTeamId());
+
+		// 入力されたパスワードが間違っていた時
+		if (!team.getPassword().equals(passwordForm.getPassword())) {
+
+			// teamをMOVに格納
+			modelAndView.addObject("team", team);
+
+			// パスワードエラーメッセージを格納
+			modelAndView.addObject("messageText", new MessageText("パスワードが違います。", "error"));
+
+			// チーム登録画面に遷移
+			modelAndView.setViewName("team_detail");
+
+			return modelAndView;
+		}
+
+		// パスワードが正しかった時
+		// チームを削除する
+		teamEditService.deleteTeam(team.getTeamId());
+
+		// 削除完了メッセージ格納（リダイレクト先に値を渡している）
+		redirectAttributes.addFlashAttribute("messageText", new MessageText("チームの削除が完了しました。", "success"));
+
+		return new ModelAndView( "redirect:/");
+	}
+
+	/*
+	 * チーム情報を更新するメソッド
+	 */
+	@RequestMapping(value = "/team_edit")
+	public String editTeam(ModelAndView modelAndView, Team team, RedirectAttributes redirectAttributes) {
+
+		List<Summoner> summonerList = new ArrayList<Summoner>();
 
 		// チームメンバー内のサモナーネームが空欄ではないサモナーをリストに追加
 		for (Summoner summoner : team.getSummonerList()) {

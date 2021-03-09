@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="/css/common.css">
+<meta charset="UTF-8">
+<title>このサイトについて</title>
+</head>
+<body>
+	<div th:replace="/common/header :: header"></div>
+	<br><br>
+	<div class="about_site_form">
+		<div class="about_site_title">このサイトについて</div>
+		<div class="margin-t-25 padding-b-25 margin-l-20 margin-r-20">
+			<span class="fs-14">このサイトはLoL(League Of Legends)のチーム募集用サイトです。</span>
+			<h3>お問い合わせ先</h3>
+			<span class="fs-14">このサイトに関するお問い合わせについては下記になります。
+			<br>メールアドレス：sonasoku1354@gmail.com</span>
+
+			<h3>免責事項</h3>
+			<span class="fs-14">当サイトのご利用により、万一、ご利用者様に何らかの不都合や損害が発生したとしても、当サイト管理人は何らの責任を負うものではありません。
+			<br>また、当サイトにおけるトラブルにおいても、当サイト管理人には一切の責任がないものとさせていただきます。</span>
+			<br><br>
+			<span class="fs-14 red">特にパスワードに関しては細心の注意をお願いいたします。
+			<br>他サイトでも使用している文字列は使用しないでください。当サイトのパスワードはあくまで飾りのようなものです。</span>
+			<h3>著作権等</h3>
+			<span class="fs-14">当サイトに収録・掲載されているコンテンツのレイアウト、デザインおよび構造に関する著作権は当サイト管理人に帰属します。
+			<br>また、当サイトに投稿された募集情報の全ては当サイトが著作権を持つものとなります。</span>
+			<h3>禁止事項</h3>
+			<span class="fs-14">第三者、または当サイトに損害や不利益を与える行為、第三者、または当サイトの信用や名誉を損なう行為は禁止とさせて頂きます。
+			<br>また、その他、管理人が不適切と判断した書き込みに関しては予告なく削除する事がありますのでご了承ください。</span>
+		</div>
+	</div>
+	<div th:replace="/common/footer :: footer"></div>
+</body>
+</html>

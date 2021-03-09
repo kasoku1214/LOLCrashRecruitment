@@ -26,14 +26,14 @@
 				</td>
 				<td class="detail_summoner_name" th:text="*{summonerList[__${stat.index}__].summonerName}"></td>
 				<td class="detail_summoner_role" th:text="${T(com.crecruit.enumclass.Role).getRoleNameByRoleCode(summoner.roleCode1)}"></td>
-				<td class="detail_summoner_rank" th:id="'detail_summoner_rank' + ${stat.index}"
+				<td class="detail_summoner_rank margin-l-10" th:id="'detail_summoner_rank' + ${stat.index}"
 					th:text="${T(com.crecruit.enumclass.Rank).getRankNameByRankCode(summoner.rankCode)}"></td>
 		</table>
 		<div class="team_create_row">
 			<label class="column_title">募集ランク帯</label>
-			<span class="detail_summoner_rank va-top" id="max_rank" th:text="${T(com.crecruit.enumclass.Rank).getRankNameByRankCode(team.maxRank)}"></span>
-			<span class="margin-l-5 fs-12 va-top">から</span>
 			<span class="detail_summoner_rank va-top" id="min_rank" th:text="${T(com.crecruit.enumclass.Rank).getRankNameByRankCode(team.minRank)}"></span>
+			<span class="margin-l-5 fs-12 va-top">から</span>
+			<span class="detail_summoner_rank va-top" id="max_rank" th:text="${T(com.crecruit.enumclass.Rank).getRankNameByRankCode(team.maxRank)}"></span>
 			<span class="margin-l-5 fs-12 va-top">まで</span>
 		</div>
 		<div class="team_create_row">
@@ -48,14 +48,17 @@
 			<label class="column_title">チーム紹介文</label>
 			<p class="detail_team_introduction fs-12" th:text="*{teamIntroduction}"></p>
 		</div>
-		<form class="" method="post" th:action="@{/open_team_edit}" th:object="${passwordForm}">
+		<form method="post" th:action="@{/open_team_edit}" th:object="${passwordForm}">
 			<div class="team_create_row">
 				<label class="column_title">パスワード</label>
 				<input class="password_input" type="password" th:field="*{password}">
 				<input type="hidden" th:field="*{teamId}">
 			</div>
-			<div class="column_caution red">※チーム情報の修正や更新にはパスワードが必要になります</div>
-			<button class="edit_button" type="submit">編集</button>
+			<div class="column_caution red">※チーム情報を編集、削除する場合はこちらに入力してから下部ボタン押下してください</div>
+			<div class="edit_button_area">
+				<input class="edit_button button_hover" type="submit" name="update" value="編集">
+				<input class="delete_button button_hover" onclick="return alertDelete();" type="submit" name="delete" value="削除">
+			</div>
 		</form>
 	</div>
 	<div th:replace="/common/footer :: footer"></div>

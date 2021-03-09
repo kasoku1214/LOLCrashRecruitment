@@ -45,4 +45,9 @@ public interface TeamRepository extends JpaRepository<Team, Integer> {
 			+ "ORDER BY updated_at DESC", nativeQuery = true)
 	public Page<Team> findByRankCode(@Param("rankCode") Integer rankCode, Pageable pageable);
 
+	// 検索条件(teamName)からチームを検索する
+	public Page<Team> findByTeamNameContainingIgnoreCaseOrderByUpdatedAtDesc(String teamName, Pageable pageable);
+
+	// チームIDからチームを削除する
+	public void deleteByTeamId(Integer teamID);
 }

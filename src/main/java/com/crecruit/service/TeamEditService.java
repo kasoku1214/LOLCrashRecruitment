@@ -29,6 +29,9 @@ public class TeamEditService {
 		return teamRepository.findById(teamId).orElse(null);
 	}
 
+	/*
+	 * チームを更新するメソッド
+	 */
 	@Transactional
 	public String editTeam(Team team) {
 
@@ -54,4 +57,17 @@ public class TeamEditService {
 		return messageText;
 	}
 
+	/*
+	 * チームを削除するメソッド
+	 */
+	@Transactional
+	public String deleteTeam(Integer teamID) {
+
+		String messageText = null;
+
+		// チームの削除
+		teamRepository.deleteByTeamId(teamID);
+
+		return messageText;
+	}
 }

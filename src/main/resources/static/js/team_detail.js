@@ -63,3 +63,14 @@ function changeRankColor(rankObj) {
 		isColorChanged = true;
 	}
 }
+
+// 削除ボタン押下時にアラートを出す
+function alertDelete() {
+
+	// 削除確認ポップアップ
+	if (window.confirm("チームを削除しますか？")) {
+		return true;
+	} else {
+		return false;
+	}
+}

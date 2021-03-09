@@ -19,6 +19,8 @@
 			</select><button class="search_button" type="submit">
 				<img class="h-18" src="/img/search_icon.svg">
 			</button>
+			<input type="text" class="team_name_input_for_search" th:field="*{teamName}" maxlength="40"
+			placeholder="チーム名での検索はこちら">
 		</form>
 		<form class="center" th:action="@{/open_team_register}">
 			<button class="to_register_page_button">メンバーを募集する</button>

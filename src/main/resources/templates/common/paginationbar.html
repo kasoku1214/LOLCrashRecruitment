@@ -7,14 +7,45 @@
 <body th:fragment="paginationbar">
 	<ul class="center padding-l-0">
 		<li th:class="inline">
-			<span th:if="${page.first}">&lt;&lt;</span>
-			<a th:if="${not page.first}" th:href="@{${url}(page=0)}">&lt;&lt;</a>
-		</li>
-		<li th:class="inline">
 			<span th:if="${page.first}">&lt;</span>
 			<a th:if="${not page.first}" th:href="@{${url}(page=${page.number-1})}">&lt;</a>
 		</li>
-		<li th:if="${page.totalPages <= 10}" th:each='i : ${#numbers.sequence(0, page.totalPages-1)}' th:class="inline">
+		<!--/* 全ページ数が９以下の時は、全ページ番号を表示 */-->
+		<li th:if="${page.totalPages <= 9}" th:each='i : ${#numbers.sequence(0, page.totalPages-1)}' th:class="inline">
+			<span th:if='${i}==${page.number}' th:text='${i+1}'></span>
+			<a th:if='${i}!=${page.number}' th:href="@{${url}(page=${i})}">
+				<span th:text='${i+1}'></span>
+			</a>
+		</li>
+		<!--/* 全ページが９以上の時 */-->
+		<!--/* 1~5ページの時は後ろに「...」をつける */-->
+		<li th:if="${page.totalPages > 9 && page.number < 5}" th:each='i : ${#numbers.sequence(0, 8)}' th:class="inline">
+			<span th:if='${i}==${page.number}' th:text='${i+1}'></span>
+			<a th:if='${i}!=${page.number}' th:href="@{${url}(page=${i})}">
+				<span th:text='${i+1}'></span>
+			</a>
+		</li>
+		<li th:if="${page.totalPages > 9 && page.number < 5}" class="inline">
+			<span th:text="..."></span>
+		</li>
+		<!--/* (6~TotalPage数-5)ページの時は前後に「...」をつける */-->
+		<li th:if="${page.totalPages > 9 && 4 < page.number && page.number < page.totalPages - 5}" class="inline">
+			<span th:text="..."></span>
+		</li>
+		<li th:if="${page.totalPages > 9 && 4 < page.number && page.number < page.totalPages - 5}" th:each='i : ${#numbers.sequence(page.number-4, page.number+4)}' th:class="inline">
+			<span th:if='${i}==${page.number}' th:text='${i+1}'></span>
+			<a th:if='${i}!=${page.number}' th:href="@{${url}(page=${i})}">
+				<span th:text='${i+1}'></span>
+			</a>
+		</li>
+		<li th:if="${page.totalPages > 9 && 4 < page.number && page.number < page.totalPages - 5}" class="inline">
+			<span th:text="..."></span>
+		</li>
+		<!--/* (TotalPage数-5)以上ページの時は前方に「...」をつける */-->
+		<li th:if="${page.totalPages > 9 && page.number >= page.totalPages-5}" class="inline">
+			<span th:text="..."></span>
+		</li>
+		<li th:if="${page.totalPages > 9 && page.number >= page.totalPages-5}" th:each='i : ${#numbers.sequence(page.totalPages-9, page.totalPages-1)}' th:class="inline">
 			<span th:if='${i}==${page.number}' th:text='${i+1}'></span>
 			<a th:if='${i}!=${page.number}' th:href="@{${url}(page=${i})}">
 				<span th:text='${i+1}'></span>
@@ -23,10 +54,6 @@
 		<li th:class="inline">
 			<span th:if="${page.last}">&gt;</span>
 			<a th:if="${not page.last}" th:href="@{${url}(page=${page.number+1})}">&gt;</a>
-		</li>
-		<li th:class="inline">
-			<span th:if="${page.last}">&gt;&gt;</span>
-			<a th:if="${not page.last}" th:href="@{${url}(page=(${page.totalPages}-1))}">&gt;&gt;</a>
 		</li>
 	</ul>
 </body>

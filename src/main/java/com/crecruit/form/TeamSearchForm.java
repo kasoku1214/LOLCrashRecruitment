@@ -11,4 +11,6 @@ public class TeamSearchForm {
 
 	private Integer rankCode;
 
+	private String teamName;
+
 }

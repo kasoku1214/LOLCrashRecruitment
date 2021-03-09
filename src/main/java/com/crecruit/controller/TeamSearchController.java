@@ -21,16 +21,6 @@ public class TeamSearchController {
 	private TeamSearchService teamSearchService;
 
 	/**
-	 * 検索用Formオブジェクトを初期化して返却する
-	 * @ruturn 検索用Formオブジェクト
-	 */
-	@ModelAttribute("teamSearchForm")
-	public TeamSearchForm createTeamSearchForm() {
-		TeamSearchForm teamSearchForm = new TeamSearchForm();
-		return teamSearchForm;
-	}
-
-	/**
 	 * エラーメッセージ表示判定オブジェクトを初期化して返却する
 	 * @ruturn エラーメッセージ表示判定オブジェクト
 	 */
@@ -61,6 +51,13 @@ public class TeamSearchController {
 
 		// 全チームの検索
 		Page<Team> teamListPage = teamSearchService.searchTeam(teamSearchForm, pageable);
+
+		// チーム名による検索であれば、検索条件のランクとロールを初期化する
+		if(!teamSearchForm.getTeamName().equals("")) {
+			teamSearchForm.setRankCode(0);
+			teamSearchForm.setRoleCode(0);
+			modelAndView.addObject("teamSearchForm", teamSearchForm);
+		}
 
 		// htmlに値を渡す
 		modelAndView.addObject("page", teamListPage);

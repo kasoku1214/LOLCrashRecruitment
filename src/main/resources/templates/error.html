@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="/css/common.css">
+<meta charset="UTF-8">
+<title>エラーページ</title>
+</head>
+<body>
+	<div th:replace="/common/header :: header"></div>
+	<br><br>
+	<div class="error_form">
+		<div class="error_title">エラーページ</div>
+		<div class="fs-14 margin-t-25 margin-l-20 margin-r-20">
+			<span>エラーを検知したため、このページを表示しております。
+			<br>TOPページに戻り、再度操作を続けてください。</span>
+			<br><br>
+			<span>何度もこちらのページが表示される場合は、しばらくお待ちいただいてからアクセスいただくか、お手数ですが下記までご連絡をお願いいたします。</span>
+			<br><br>
+			<span>メールアドレス：sonasoku1354@gmail.com</span>
+		</div>
+	</div>
+	<div th:replace="/common/footer :: footer"></div>
+</body>
+</html>
