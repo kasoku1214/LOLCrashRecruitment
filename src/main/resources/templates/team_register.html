@@ -6,7 +6,7 @@
 <title>Clashメンバー募集</title>
 </head>
 <body>
-	<div th:replace="/common/header :: header"></div>
+	<div th:replace="common/header :: header"></div>
 	<br><br>
 	<div th:if="${messageText.messageType.equals('error')}" class="message_error" th:text="*{messageText.textContent}" ></div>
 	<div th:if="${messageText.messageType.equals('success')}" class="message_success" th:text="*{messageText.textContent}" ></div>
@@ -84,7 +84,7 @@
 		<br>
 		<button class="register_button" type="submit">募集</button>
 	</form>
-	<div th:replace="/common/footer :: footer"></div>
+	<div th:replace="common/footer :: footer"></div>
 <script src="/js/team_register.js"></script>
 </body>
 </html>
