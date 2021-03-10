@@ -11,7 +11,7 @@
 			<a th:if="${not page.first}" th:href="@{${url}(page=${page.number-1})}">&lt;</a>
 		</li>
 		<!--/* 全ページ数が９以下の時は、全ページ番号を表示 */-->
-		<li th:if="${page.totalPages <= 9}" th:each='i : ${#numbers.sequence(0, page.totalPages-1)}' th:class="inline">
+		<li th:if="${0 < page.totalPages && page.totalPages <= 9}" th:each='i : ${#numbers.sequence(0, page.totalPages-1)}' th:class="inline">
 			<span th:if='${i}==${page.number}' th:text='${i+1}'></span>
 			<a th:if='${i}!=${page.number}' th:href="@{${url}(page=${i})}">
 				<span th:text='${i+1}'></span>
