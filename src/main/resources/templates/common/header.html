@@ -7,6 +7,10 @@
 <body th:fragment="header">
 	<header>
 		<a href="/" class="titleName">CLASH.GG</a>
+		<div class="site_intro">
+			<span>このサイトはリーグ・オブ・レジェンド（League of Legends）のメンバー募集サイトです。<br>
+				一緒にゲームをやるフレンドを探すのにも活用いただけます！</span>
+		</div>
 		<form class="team_search_form" th:action="@{/team_search}" th:object="${teamSearchForm}">
 			<select class="h-27" th:field="*{roleCode}">
 				<option th:value="0" th:text="any"></option>

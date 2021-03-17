@@ -4,6 +4,29 @@ header {
 	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
 }
 
+.titleName {
+	display: block;
+	position: relative;
+	font-family: Source Code Pro;
+	font-size: 40px;
+	margin-top: 0px;
+	text-align: center;
+	color: #EDEDF4;
+}
+
+.site_intro{
+    width: 600px;
+    font-size: 13px;
+    color: #EDEDF4;
+	border-style: dashed;
+    border-width: thin;
+    border-radius: 10px;
+    border-color: #EDEDF4;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
 .search_button {
 	position: relative;
 	top: 3px;
@@ -16,16 +39,6 @@ header {
 	filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));
 }
 
-.titleName {
-	display: block;
-	position: relative;
-	font-family: Source Code Pro;
-	font-size: 40px;
-	margin-top: 0px;
-	margin-bottom: 10px;
-	text-align: center;
-	color: #EDEDF4;
-}
 
 .team_search_form {
 	text-align: center;
