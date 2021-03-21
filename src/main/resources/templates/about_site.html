@@ -1,9 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<link rel="stylesheet" href="/css/common.css">
-<meta charset="UTF-8">
-<title>このサイトについて</title>
+	<link rel="stylesheet" href="/css/common.css">
+	<meta charset="UTF-8">
+	<title>このサイトについて</title>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZN45468555"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-ZN45468555');
+	</script>
 </head>
 <body>
 	<div th:replace="common/header :: header"></div>

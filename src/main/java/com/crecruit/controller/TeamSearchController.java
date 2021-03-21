@@ -49,7 +49,7 @@ public class TeamSearchController {
 	@RequestMapping(value = "/team_search")
 	public ModelAndView searchTeam(ModelAndView modelAndView, Pageable pageable, TeamSearchForm teamSearchForm) {
 
-		// 全チームの検索
+		// チームの検索
 		Page<Team> teamListPage = teamSearchService.searchTeam(teamSearchForm, pageable);
 
 		// チーム名による検索であれば、検索条件のランクとロールを初期化する

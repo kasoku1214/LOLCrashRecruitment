@@ -1,7 +1,9 @@
 package com.crecruit.controller;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.crecruit.form.TeamSearchForm;
 
@@ -20,5 +22,25 @@ public class CustomController {
 	public TeamSearchForm createTeamSearchForm() {
 		TeamSearchForm teamSearchForm = new TeamSearchForm();
 		return teamSearchForm;
+	}
+
+	/*
+	 * 例外ハンドリングメソッド
+	 * （全例外に対して）
+	 */
+	@ExceptionHandler(Exception.class)
+	public ModelAndView openErrorPageByException(Exception e) {
+
+		// MOVの作成
+		ModelAndView modelAndView = new ModelAndView();
+
+		// teamSeachFormをMOVに格納
+		TeamSearchForm teamSearchForm = new TeamSearchForm();
+		modelAndView.addObject("teamSearchForm", teamSearchForm);
+
+		// エラー画面に遷移
+		modelAndView.setViewName("error");
+
+		return modelAndView;
 	}
 }
