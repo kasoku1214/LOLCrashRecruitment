@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.crecruit.entity.Summoner;
 import com.crecruit.entity.Team;
@@ -22,6 +22,9 @@ public class TeamEditController {
 	// チーム検索サービス
 	@Autowired
 	private TeamEditService teamEditService;
+
+	@Autowired
+	private TeamSearchController teamSearchController;
 
 	/**
 	 * エラーメッセージ表示判定オブジェクトを初期化して返却する
@@ -71,8 +74,7 @@ public class TeamEditController {
 	 * チームを削除し、トップページに遷移するメソッド
 	 */
 	@RequestMapping(value = "/open_team_edit", params = "delete")
-	public ModelAndView deleteTeam(ModelAndView modelAndView, PasswordForm passwordForm,
-			RedirectAttributes redirectAttributes) {
+	public ModelAndView deleteTeam(ModelAndView modelAndView, PasswordForm passwordForm, Pageable pageable) {
 
 		// teamIDからチームを取得
 		Team team = teamEditService.findByTeamId(passwordForm.getTeamId());
@@ -96,17 +98,20 @@ public class TeamEditController {
 		// チームを削除する
 		teamEditService.deleteTeam(team.getTeamId());
 
-		// 削除完了メッセージ格納（リダイレクト先に値を渡している）
-		redirectAttributes.addFlashAttribute("messageText", new MessageText("チームの削除が完了しました。", "success"));
+		// トップページに戻るためにmov取得
+		modelAndView = teamSearchController.searchAllTeam(modelAndView, pageable);
 
-		return new ModelAndView( "redirect:/");
+		// 削除完了メッセージ格納
+		modelAndView.addObject("messageText", new MessageText("チームの削除が完了しました。", "success"));
+
+		return modelAndView;
 	}
 
 	/*
 	 * チーム情報を更新するメソッド
 	 */
 	@RequestMapping(value = "/team_edit")
-	public String editTeam(ModelAndView modelAndView, Team team, RedirectAttributes redirectAttributes) {
+	public ModelAndView editTeam(ModelAndView modelAndView, Team team, Pageable pageable) {
 
 		List<Summoner> summonerList = new ArrayList<Summoner>();
 
@@ -123,10 +128,13 @@ public class TeamEditController {
 		// チームとメンバーを更新
 		teamEditService.editTeam(team);
 
-		// 募集完了メッセージ格納（リダイレクト先に値を渡している）
-		redirectAttributes.addFlashAttribute("messageText", new MessageText("更新が完了しました。", "success"));
+		// トップページに戻るためにmov取得
+		modelAndView = teamSearchController.searchAllTeam(modelAndView, pageable);
 
-		return "redirect:/";
+		// 更新完了メッセージ格納
+		modelAndView.addObject("messageText", new MessageText("更新が完了しました。", "success"));
+
+		return modelAndView;
 	}
 
 }

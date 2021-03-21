@@ -1,12 +1,12 @@
 package com.crecruit.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.crecruit.entity.Team;
 import com.crecruit.form.PasswordForm;
@@ -20,6 +20,9 @@ public class TeamDetailController {
 	@Autowired
 	private TeamDetailService teamDetailService;
 
+	@Autowired
+	private TeamSearchController teamSearchController;
+
 	/**
 	 * エラーメッセージ表示判定オブジェクトを初期化して返却する
 	 * @ruturn エラーメッセージ表示判定オブジェクト
@@ -32,18 +35,20 @@ public class TeamDetailController {
 
 	@RequestMapping(value = "/team_detail/{teamId}")
 	public ModelAndView openTeamDetailPage(ModelAndView modelAndView, @PathVariable("teamId") Integer teamId,
-			RedirectAttributes redirectAttributes) {
+			Pageable pageable) {
 
 		// teamIDからチーム情報を検索
 		Team team = teamDetailService.findByTeamId(teamId);
 
 		// teamIDに該当するチームが存在しない場合
-		if(team == null) {
-			// エラーメッセージ格納（リダイレクト先に値を渡している）
-			redirectAttributes.addFlashAttribute("messageText",
-					new MessageText("チーム情報が存在しませんでした。削除されたチームか存在しないチームの情報を開こうとしています。", "error"));
+		if (team == null) {
 
-			modelAndView.setViewName("redirect:/");
+			// トップページに戻るためにmov取得
+			modelAndView = teamSearchController.searchAllTeam(modelAndView, pageable);
+
+			// エラーメッセージ格納
+			modelAndView.addObject("messageText",
+					new MessageText("チーム情報が存在しませんでした。削除されたチームか存在しないチームの情報を開こうとしています。", "error"));
 
 			return modelAndView;
 		}
