@@ -34,7 +34,8 @@
 					<label class="detail_column_title"></label>
 				</td>
 				<td class="detail_summoner_name"><a th:href="'https://jp.op.gg/summoner/userName=' + *{summonerList[__${stat.index}__].summonerName}"
-					th:text="*{summonerList[__${stat.index}__].summonerName}"></a></td>
+					th:text="*{summonerList[__${stat.index}__].summonerName}"
+					target="_blank" rel="noopener"></a></td>
 				<td class="detail_summoner_role" th:text="${T(com.crecruit.enumclass.Role).getRoleNameByRoleCode(summoner.roleCode1)}"></td>
 				<td class="detail_summoner_rank margin-l-10" th:id="'detail_summoner_rank' + ${stat.index}"
 					th:text="${T(com.crecruit.enumclass.Rank).getRankNameByRankCode(summoner.rankCode)}"></td>
