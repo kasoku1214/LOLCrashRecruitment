@@ -13,11 +13,11 @@
 		</div>
 		<form class="team_search_form" th:action="@{/team_search}" th:object="${teamSearchForm}">
 			<select class="h-27" th:field="*{roleCode}">
-				<option th:value="0" th:text="role"></option>
+				<option th:value="0" th:text="希望レーン"></option>
 				<option th:each="role : ${T(com.crecruit.enumclass.Role).values()}"
 					th:value="${role.getRoleCode()}" th:text="${role.roleName}">ロール名</option>
 			</select><select class="h-27" th:field="*{rankCode}">
-				<option th:value="0" th:text="rank"></option>
+				<option th:value="0" th:text="ランクを入力"></option>
 				<option th:each="rank : ${T(com.crecruit.enumclass.Rank).values()}"
 					th:value="${rank.getRankCode()}" th:text="${rank.rankName}">ランク表示</option>
 			</select><button class="search_button" type="submit">

@@ -51,7 +51,10 @@
 			<table class="summoner_table margin-t-10">
 				<tr th:each="summoner, summonerStat:${team.summonerList}">
 					<td>
-						<span class="summoner_name" th:text="${summoner.summonerName}"></span>
+						<span class="summoner_name">
+							<a th:href="'https://jp.op.gg/summoner/userName=' + ${summoner.summonerName}"
+						 		th:text="${summoner.summonerName}"></a>
+						 </span>
 					</td>
 					<td class="summoner_role tag"
 					th:text="${T(com.crecruit.enumclass.Role).getRoleNameByRoleCode(summoner.roleCode1)}"></td>
